@@ -1,4 +1,4 @@
-import { Icons } from "@/components/ui/icons"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -9,8 +9,14 @@ function StackedCircularFooter() {
     <footer className="bg-background py-12">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center">
-          <div className="mb-8 rounded-full bg-primary/10 p-8">
-          <Icons.logo className="icon-class w-6" />
+          <div className="mb-8 rounded-full bg-primary/10 overflow-hidden">
+            <Image 
+              src="/detailed_logo.png" 
+              alt="Detailed Logo" 
+              width={80} 
+              height={80} 
+              className="object-contain" 
+            />
           </div>
           <nav className="mb-8 flex flex-wrap justify-center gap-6">
             <a href="#" className="hover:text-primary">Home</a>
