@@ -5,6 +5,7 @@ import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { Suspense } from "react";
 import { ClientOnly } from "@/components/client-only";
+import GlassNavbar from "@/components/glass-navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,22 +35,9 @@ export default function RootLayout({
         <ClerkProvider>
           <Suspense>
             <SmoothScroll>
-              <header className="flex justify-between items-center p-4 border-b">
-                <div>
-                  <h1 className="text-xl font-bold">My App</h1>
-                </div>
-                <div className="flex gap-4">
-                  <ClientOnly>
-                    <Show when="signed-out">
-                      <SignInButton />
-                      <SignUpButton />
-                    </Show>
-                    <Show when="signed-in">
-                      <UserButton />
-                    </Show>
-                  </ClientOnly>
-                </div>
-              </header>
+             <div className="fixed top-0 left-0 right-0 z-50">
+                <GlassNavbar />
+              </div>
               {children}
             </SmoothScroll>
           </Suspense>
