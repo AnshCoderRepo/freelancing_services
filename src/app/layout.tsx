@@ -36,7 +36,9 @@ export default function RootLayout({
           <Suspense>
             <SmoothScroll>
              <div className="fixed top-0 left-0 right-0 z-50">
-                <GlassNavbar />
+                <ClientOnly>
+                  <GlassNavbar />
+                </ClientOnly>
               </div>
               {children}
             </SmoothScroll>
