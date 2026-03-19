@@ -4,6 +4,7 @@ import { StackedCircularFooterDemo } from "@/components/ui/stacked-circular-foot
 import { GlassmorphismPortfolioBlock } from "@/components/ui/glassmorphism-portfolio-block-shadcnui";
 import { FocusRail, type FocusRailItem } from "@/components/ui/focus-rail";
 import { PortfolioFolderSection } from "@/components/ui/3d-folder";
+import { TestimonialsSection } from "@/components/ui/testimonial-v2";
 
 const FOCUS_RAIL_ITEMS: FocusRailItem[] = [
   {
@@ -82,6 +83,12 @@ export default function Home() {
           <p>Built with Next.js, Spline, Framer Motion, and Tailwind CSS</p>
         </div>
       </main>
+
+      {/* Testimonials — above footer */}
+      <div className="w-full bg-zinc-50 dark:bg-black">
+        <TestimonialsSection />
+      </div>
+
       <StackedCircularFooterDemo />
     </div>
   );
