@@ -8,9 +8,10 @@ import React, {
   useCallback,
   forwardRef,
 } from "react";
-import { Sun, Moon, X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ExternalLink, ChevronLeft, ChevronRight, HardDrive, Cpu, Layers } from "lucide-react";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { Badge } from "@/components/ui/badge";
 
 // --- Utilities ---
 function cn(...inputs: ClassValue[]) {
@@ -22,6 +23,8 @@ export interface Project {
   id: string;
   image: string;
   title: string;
+  description?: string;
+  tech?: string[];
 }
 
 const PLACEHOLDER_IMAGE =
@@ -201,7 +204,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
   if (!shouldRender || !currentProject) return null;
 
   const getInitialStyles = (): React.CSSProperties => {
-    if (!sourceRect) return {};
+    if (typeof window === "undefined" || !sourceRect) return {};
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     const targetWidth = Math.min(800, viewportWidth - 64);
@@ -330,13 +333,24 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
               transition: "opacity 500ms ease-out 500ms, transform 600ms cubic-bezier(0.16, 1, 0.3, 1) 500ms",
             }}
           >
-            <div className="flex items-center justify-between gap-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="flex-1 min-w-0">
                 <h3 className="text-2xl font-bold text-foreground tracking-tight truncate">
                   {currentProject?.title}
                 </h3>
-                <div className="flex items-center gap-4 mt-2">
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 bg-muted rounded-full border border-white/5">
+                <p className="mt-1 text-sm text-neutral-400 leading-relaxed max-w-xl">
+                  {projects[internalIndex]?.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {projects[internalIndex]?.tech?.map((t) => (
+                    <span key={t} className="text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 bg-white/5 border border-white/10 rounded-md text-neutral-300">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                 <div className="flex items-center gap-1.5 px-2.5 py-1 bg-muted rounded-full border border-white/5">
                     {projects.map((_, idx) => (
                       <button
                         key={idx}
@@ -350,15 +364,11 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
                       />
                     ))}
                   </div>
-                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60">
-                    {internalIndex + 1} / {totalProjects}
-                  </p>
-                </div>
+                  <button className="flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase tracking-widest text-primary-foreground bg-primary hover:brightness-110 rounded-xl shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105 active:scale-95">
+                    <span>Explore</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </button>
               </div>
-              <button className="flex items-center gap-2 px-6 py-3 text-sm font-bold uppercase tracking-widest text-primary-foreground bg-primary hover:brightness-110 rounded-xl shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105 active:scale-95">
-                <span>View Project</span>
-                <ExternalLink className="w-4 h-4" />
-              </button>
             </div>
           </div>
         </div>
@@ -373,9 +383,10 @@ interface AnimatedFolderProps {
   projects: Project[];
   className?: string;
   gradient?: string;
+  icon?: React.ElementType;
 }
 
-const AnimatedFolder: React.FC<AnimatedFolderProps> = ({ title, projects, className, gradient }) => {
+const AnimatedFolder: React.FC<AnimatedFolderProps> = ({ title, projects, className, gradient, icon: FolderIcon }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [sourceRect, setSourceRect] = useState<DOMRect | null>(null);
@@ -407,31 +418,33 @@ const AnimatedFolder: React.FC<AnimatedFolderProps> = ({ title, projects, classN
     <>
       <div
         className={cn(
-          "relative flex flex-col items-center justify-center p-8 rounded-2xl cursor-pointer bg-card border border-border transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-2xl hover:shadow-accent/20 hover:border-accent/40 group",
+          "relative flex flex-col items-center justify-center p-8 rounded-3xl cursor-pointer bg-neutral-900/40 border border-white/5 backdrop-blur-sm transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-neutral-900/60 hover:border-white/10 group",
           className
         )}
         style={{
-          minWidth: "280px",
-          minHeight: "320px",
+          width: "100%",
+          maxWidth: "340px",
+          minHeight: "380px",
           perspective: "1200px",
-          transform: isHovered ? "scale(1.04) rotate(-1.5deg)" : "scale(1) rotate(0deg)",
+          transform: isHovered ? "scale(1.02) translateY(-4px)" : "scale(1) translateY(0)",
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Glow overlay */}
         <div
-          className="absolute inset-0 rounded-2xl transition-opacity duration-700"
+          className="absolute inset-0 rounded-3xl transition-opacity duration-700 pointer-events-none"
           style={{
             background: `radial-gradient(circle at 50% 70%, ${accentColor} 0%, transparent 70%)`,
-            opacity: isHovered ? 0.12 : 0,
+            opacity: isHovered ? 0.15 : 0,
           }}
         />
+
         {/* Folder graphic */}
-        <div className="relative flex items-center justify-center mb-4" style={{ height: "160px", width: "200px" }}>
+        <div className="relative flex items-center justify-center mb-8" style={{ height: "160px", width: "100%" }}>
           {/* Back panel */}
           <div
-            className="absolute w-32 h-24 rounded-lg shadow-md border border-white/10"
+            className="absolute w-36 h-28 rounded-xl shadow-md border border-white/10"
             style={{
               background: backBg,
               transformOrigin: "bottom center",
@@ -442,13 +455,13 @@ const AnimatedFolder: React.FC<AnimatedFolderProps> = ({ title, projects, classN
           />
           {/* Tab */}
           <div
-            className="absolute w-12 h-4 rounded-t-md border-t border-x border-white/10"
+            className="absolute w-14 h-5 rounded-t-lg border-t border-x border-white/5"
             style={{
               background: tabBg,
-              top: "calc(50% - 48px - 12px)",
-              left: "calc(50% - 64px + 16px)",
+              top: "calc(50% - 56px - 14px)",
+              left: "calc(50% - 72px + 20px)",
               transformOrigin: "bottom center",
-              transform: isHovered ? "rotateX(-30deg) translateY(-3px)" : "rotateX(0deg) translateY(0)",
+              transform: isHovered ? "rotateX(-30deg) translateY(-4px)" : "rotateX(0deg) translateY(0)",
               transition: "transform 700ms cubic-bezier(0.16, 1, 0.3, 1)",
               zIndex: 10,
             }}
@@ -472,50 +485,37 @@ const AnimatedFolder: React.FC<AnimatedFolderProps> = ({ title, projects, classN
           </div>
           {/* Front panel */}
           <div
-            className="absolute w-32 h-24 rounded-lg shadow-lg border border-white/20"
+            className="absolute w-36 h-28 rounded-xl shadow-lg border border-white/20"
             style={{
               background: frontBg,
-              top: "calc(50% - 48px + 4px)",
+              top: "calc(50% - 56px + 6px)",
               transformOrigin: "bottom center",
-              transform: isHovered ? "rotateX(35deg) translateY(12px)" : "rotateX(0deg) translateY(0)",
+              transform: isHovered ? "rotateX(35deg) translateY(14px)" : "rotateX(0deg) translateY(0)",
               transition: "transform 700ms cubic-bezier(0.16, 1, 0.3, 1)",
               zIndex: 30,
             }}
           />
-          {/* Front gloss */}
-          <div
-            className="absolute w-32 h-24 rounded-lg overflow-hidden pointer-events-none"
-            style={{
-              top: "calc(50% - 48px + 4px)",
-              background: "linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 60%)",
-              transformOrigin: "bottom center",
-              transform: isHovered ? "rotateX(35deg) translateY(12px)" : "rotateX(0deg) translateY(0)",
-              transition: "transform 700ms cubic-bezier(0.16, 1, 0.3, 1)",
-              zIndex: 31,
-            }}
-          />
+          {/* Icon indicator */}
+          {FolderIcon && (
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[32] pointer-events-none opacity-40 group-hover:opacity-0 transition-opacity duration-500">
+               <FolderIcon className="w-12 h-12 text-white" strokeWidth={1} />
+            </div>
+          )}
         </div>
+
         {/* Label */}
-        <div className="text-center">
+        <div className="text-center relative z-40">
           <h3
-            className="text-lg font-bold text-foreground mt-4 transition-all duration-500"
+            className="text-xl font-bold text-foreground mt-4 transition-all duration-500 tracking-tight"
             style={{
               transform: isHovered ? "translateY(2px)" : "translateY(0)",
-              letterSpacing: isHovered ? "-0.01em" : "0",
             }}
           >
             {title}
           </h3>
-          <p className="text-sm font-medium text-muted-foreground transition-all duration-500" style={{ opacity: isHovered ? 0.8 : 1 }}>
-            {projects.length} {projects.length === 1 ? "project" : "projects"}
+          <p className="text-sm font-medium text-neutral-400 mt-1 transition-all duration-500" style={{ opacity: isHovered ? 0.8 : 1 }}>
+            {projects.length} Showcase {projects.length === 1 ? "Module" : "Modules"}
           </p>
-        </div>
-        {/* Hint */}
-        <div
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-muted-foreground/50 transition-all duration-500"
-          style={{ opacity: isHovered ? 0 : 1, transform: isHovered ? "translateY(10px)" : "translateY(0)" }}
-        >
-          <span>Hover</span>
         </div>
       </div>
 
@@ -532,157 +532,133 @@ const AnimatedFolder: React.FC<AnimatedFolderProps> = ({ title, projects, classN
   );
 };
 
-// --- Portfolio Data ---
+// --- Portfolio Data based on Ansh's CV ---
 const portfolioData = [
   {
-    title: "Branding",
-    gradient: "linear-gradient(135deg, #e73827, #f85032)",
+    title: "SCOPE Platform",
+    gradient: "linear-gradient(135deg, #0ea5e9, #0284c7)",
+    icon: HardDrive,
     projects: [
-      { id: "b1", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800", title: "Lumnia Identity" },
-      { id: "b2", image: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800", title: "Prism Collective" },
-      { id: "b3", image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=800", title: "Vertex Studio" },
-      { id: "b4", image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800", title: "Aura Branding" },
-      { id: "b5", image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=800", title: "Zephyr Lab" },
+      { 
+        id: "scope-1", 
+        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop", 
+        title: "LMS Interface",
+        description: "MERN-based LMS platform supporting 1,000+ users with secure course delivery.",
+        tech: ["MongoDB", "Express", "React", "Node.js"]
+      },
+      { 
+        id: "scope-2", 
+        image: "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=1200&auto=format&fit=crop", 
+        title: "Razorpay Gateway",
+        description: "Integrated secure payment pipelines for streamlined course transactions.",
+        tech: ["Razorpay API", "JWT", "OTP Auth"]
+      },
+      { 
+        id: "scope-3", 
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop", 
+        title: "Analytics Engine",
+        description: "Improved efficiency via automated inventory tracking and real-time stock updates.",
+        tech: ["Recharts", "SCSS", "Context API"]
+      },
     ] as Project[],
   },
   {
-    title: "Web Design",
-    gradient: "linear-gradient(to right, #f7b733, #fc4a1a)",
+    title: "ChatX AI Suite",
+    gradient: "linear-gradient(135deg, #8b5cf6, #7c3aed)",
+    icon: Cpu,
     projects: [
-      { id: "w1", image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=800", title: "Nexus Platform" },
-      { id: "w2", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800", title: "Echo Analytics" },
-      { id: "w3", image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800", title: "Flow Systems" },
-      { id: "w4", image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800", title: "Code Nest" },
-      { id: "w5", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800", title: "Dev Port" },
+      { 
+        id: "chat-1", 
+        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop", 
+        title: "AI Messaging",
+        description: "Full-stack chat app with real-time messaging and media sharing for 500+ users.",
+        tech: ["Node.js", "MongoDB", "CometChat"]
+      },
+      { 
+        id: "chat-2", 
+        image: "https://images.unsplash.com/photo-1620712943543-bcc4638d9980?q=80&w=1200&auto=format&fit=crop", 
+        title: "OpenAI Bots",
+        description: "Three OpenAI-powered bots integrated for intelligent automated responses.",
+        tech: ["OpenAI API", "Redux", "Shadcn UI"]
+      },
+      { 
+        id: "chat-3", 
+        image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=1200&auto=format&fit=crop", 
+        title: "Dockerized Scale",
+        description: "Services deployed with Docker for zero-downtime, reducing latency by 30%.",
+        tech: ["Docker", "JWT Auth", "Scalability"]
+      },
     ] as Project[],
   },
   {
-    title: "UI/UX Design",
-    gradient: "linear-gradient(135deg, #00c6ff, #0072ff)",
+    title: "REFLECTO Systems",
+    gradient: "linear-gradient(135deg, #10b981, #059669)",
+    icon: Layers,
     projects: [
-      { id: "u1", image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&q=80&w=800", title: "Crypto Wallet" },
-      { id: "u2", image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800", title: "Social Connect" },
-      { id: "u3", image: "https://images.unsplash.com/photo-1522542550221-31fd19fe4af0?auto=format&fit=crop&q=80&w=800", title: "Health Tracker" },
-      { id: "u4", image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&q=80&w=800", title: "Finance Dash" },
-      { id: "u5", image: "https://images.unsplash.com/photo-1541462608141-ad4d4f942177?auto=format&fit=crop&q=80&w=800", title: "UX Wireframe" },
-    ] as Project[],
-  },
-  {
-    title: "Photography",
-    gradient: "linear-gradient(to right, #414345, #232526)",
-    projects: [
-      { id: "p1", image: "https://images.unsplash.com/photo-1493863641943-9b68992a8d07?auto=format&fit=crop&q=80&w=800", title: "Urban Rhythms" },
-      { id: "p2", image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&q=80&w=800", title: "Natural States" },
-      { id: "p3", image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800", title: "Silent Woods" },
-    ] as Project[],
-  },
-  {
-    title: "Illustration",
-    gradient: "linear-gradient(135deg, #8e2de2, #4a00e0)",
-    projects: [
-      { id: "i1", image: "https://images.unsplash.com/photo-1618335829737-2228915674e0?auto=format&fit=crop&q=80&w=800", title: "Digital Flora" },
-      { id: "i2", image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800", title: "Neon Nights" },
-      { id: "i3", image: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80&w=800", title: "Abstract Worlds" },
-    ] as Project[],
-  },
-  {
-    title: "Motion",
-    gradient: "linear-gradient(135deg, #f80759, #bc4e9c)",
-    projects: [
-      { id: "m1", image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800", title: "3D Sequences" },
-      { id: "m2", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800", title: "Glitch Art" },
-      { id: "m3", image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&q=80&w=800", title: "Tech Loops" },
+      { 
+        id: "ref-1", 
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop", 
+        title: "Feedback Engine",
+        description: "Role-based system with sentiment tagging and structured evaluation workflows.",
+        tech: ["FastAPI", "PostgreSQL", "SQLAlchemy"]
+      },
+      { 
+        id: "ref-2", 
+        image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=1200&auto=format&fit=crop", 
+        title: "Interactive Viz",
+        description: "Dashboards for manager insights and anonymous employee feedback timelines.",
+        tech: ["Three.js", "Vue.js", "TypeScript"]
+      },
+      { 
+        id: "ref-3", 
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=1200&auto=format&fit=crop", 
+        title: "Backend Core",
+        description: "Containerized backend with ORM for multi-database compatibility.",
+        tech: ["Docker", "Node.js", "ORM Integration"]
+      },
     ] as Project[],
   },
 ];
 
-// --- Named export: embeddable section (no conflicting header/page shell) ---
 export function PortfolioFolderSection() {
   return (
-    <section className="w-full py-20 px-6">
+    <section className="w-full py-12 md:py-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Section heading */}
-        <div className="mb-12 text-center">
-          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-3 text-foreground">
-            Design <span className="text-primary italic">Portfolio</span>
+        <div className="mb-16 md:mb-24 text-center">
+          <Badge
+            variant="outline"
+            className="mb-8 rounded-full border-white/10 bg-white/5 px-6 py-2 text-[10px] uppercase tracking-[0.4em] text-neutral-400"
+          >
+            Selected Works
+          </Badge>
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 text-foreground">
+            Project <span className="text-primary italic">Deep-Dive</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            An interactive catalog of creative work. Hover over folders to reveal project previews.
+          <p className="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            Hover over certificates to reveal interactive modules and architectural breakdowns.
           </p>
         </div>
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center">
+        
+        {/* Grid - Centered items with responsive sizing */}
+        <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16 lg:gap-24">
           {portfolioData.map((folder, index) => (
             <div
               key={folder.title}
-              className="w-full animate-in fade-in slide-in-from-bottom-8 duration-700"
-              style={{ animationDelay: `${200 + index * 100}ms` }}
+              className="animate-in fade-in slide-in-from-bottom-12 duration-1000"
+              style={{ animationDelay: `${200 + index * 150}ms` }}
             >
               <AnimatedFolder
                 title={folder.title}
                 projects={folder.projects}
                 gradient={folder.gradient}
-                className="w-full"
+                icon={folder.icon}
+                className="mx-auto"
               />
             </div>
           ))}
         </div>
       </div>
     </section>
-  );
-}
-
-// --- Default export: full standalone page (matches original demo) ---
-export default function App() {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) setIsDark(true);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-  }, [isDark]);
-
-  return (
-    <main className="min-h-screen bg-background text-foreground transition-colors duration-500 selection:bg-accent/30 selection:text-accent-foreground">
-      <header className="sticky top-0 z-40 w-full bg-background/80 backdrop-blur-xl border-b border-border transition-colors duration-500">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-end">
-          <button
-            onClick={() => setIsDark(!isDark)}
-            className="w-10 h-10 flex items-center justify-center rounded-xl bg-muted/50 hover:bg-muted transition-colors border border-border"
-            aria-label="Toggle Theme"
-          >
-            {isDark ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-indigo-600" />}
-          </button>
-        </div>
-      </header>
-      <div className="max-w-7xl mx-auto pt-20 px-6 text-center">
-        <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          Design <span className="text-primary italic">Portfolio</span>
-        </h1>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
-          An interactive catalog of creative work. Hover over folders to reveal project previews.
-        </p>
-      </div>
-      <section className="max-w-7xl mx-auto px-6 pt-16 pb-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center">
-          {portfolioData.map((folder, index) => (
-            <div
-              key={folder.title}
-              className="w-full animate-in fade-in slide-in-from-bottom-8 duration-700"
-              style={{ animationDelay: `${200 + index * 100}ms` }}
-            >
-              <AnimatedFolder
-                title={folder.title}
-                projects={folder.projects}
-                gradient={folder.gradient}
-                className="w-full"
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-    </main>
   );
 }

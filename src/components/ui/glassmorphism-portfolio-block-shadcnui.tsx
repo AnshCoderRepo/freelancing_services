@@ -6,16 +6,15 @@ import { motion, Variants } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowUpRight,
-  Dribbble,
   Github,
   Linkedin,
-  Twitter,
+  Mail,
+  Phone,
+  GraduationCap,
+  Briefcase,
+  Code2,
+  Award,
 } from "lucide-react";
-
-type Highlight = {
-  title: string;
-  description: string;
-};
 
 type SocialLink = {
   label: string;
@@ -24,48 +23,63 @@ type SocialLink = {
   icon: LucideIcon;
 };
 
+type Highlight = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+};
+
 const highlights: Highlight[] = [
   {
-    title: "Collaborations",
+    icon: Briefcase,
+    title: "Current Role",
     description:
-      "Linear, Framer, Gamma, Clearbit, and early-stage founders crafting premium launches.",
+      "Software Engineer at EUROASIANN — leading the Web Tech Team to build full-stack portfolio platforms with Next.js, ShadcnUI, and modular components.",
   },
   {
-    title: "Latest drop",
+    icon: GraduationCap,
+    title: "Education",
     description:
-      "Aurora OS motion system · 47 reusable blueprints, adaptive tokens, and launch storyboard.",
+      "B.Tech from Lloyd Institute of Engineering & Technology (GPA: 8.25 / 10.00) · Graduated May 2025 · Greater Noida, UP",
   },
   {
-    title: "Availability",
+    icon: Code2,
+    title: "Tech Stack",
     description:
-      "2 advisory spots for Q1 · Remote friendly across EU & US time zones.",
+      "Java · JavaScript · Python · C++ · TypeScript · React · Next.js · Node.js · Express.js · MongoDB · PostgreSQL · Docker · Vue.js · REST APIs",
+  },
+  {
+    icon: Award,
+    title: "Certifications",
+    description:
+      "Full Stack Development — LIET  ·  Java Development — LIET",
   },
 ];
 
 const socialLinks: SocialLink[] = [
   {
-    label: "Twitter",
-    handle: "@caspermotions",
-    href: "https://x.com/caspermotions",
-    icon: Twitter,
-  },
-  {
     label: "LinkedIn",
-    handle: "Casper Lightman",
-    href: "https://linkedin.com/in/casperlightman",
+    handle: "Ansh-Adarsh",
+    href: "https://linkedin.com/in/Ansh-Adarsh",
     icon: Linkedin,
   },
   {
-    label: "Dribbble",
-    handle: "caspermotion",
-    href: "https://dribbble.com/caspermotion",
-    icon: Dribbble,
+    label: "GitHub",
+    handle: "AnshCoderRepo",
+    href: "https://github.com/AnshCoderRepo",
+    icon: Github,
   },
   {
-    label: "GitHub",
-    handle: "casper-studio",
-    href: "https://github.com/casper-studio",
-    icon: Github,
+    label: "Email",
+    handle: "anshk1126@gmail.com",
+    href: "mailto:anshk1126@gmail.com",
+    icon: Mail,
+  },
+  {
+    label: "Phone",
+    handle: "+91-7070410031",
+    href: "tel:+917070410031",
+    icon: Phone,
   },
 ];
 
@@ -124,7 +138,7 @@ export function GlassmorphismPortfolioBlock() {
                   transition={{ duration: 0.5, delay: 0.1 }}
                   className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl"
                 >
-                  Casper Lightman, Product Designer & Motion Director
+                  Ansh Adarsh, Full-Stack Software Engineer
                 </motion.h2>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -133,36 +147,42 @@ export function GlassmorphismPortfolioBlock() {
                   transition={{ duration: 0.5, delay: 0.2 }}
                   className="max-w-xl text-base leading-relaxed text-foreground/70 md:text-md"
                 >
-                  Principal product designer pairing narrative motion with
-                  premium SaaS brands. Casper leads founders and product teams
-                  through expressive design systems that convert curiosity into
-                  momentum.
+                  Full-stack engineer passionate about architecting scalable platforms and
+                  crafting exceptional user experiences. Currently leading Web Tech at
+                  EUROASIANN — building with Next.js, ShadcnUI, and end-to-end development
+                  workflows that deliver quality at pace.
                 </motion.p>
               </div>
 
               {/* Highlights grid */}
               <div className="grid gap-4 sm:grid-cols-1">
-                {highlights.map((item, index) => (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.1 * index }}
-                    whileHover={{ y: -4 }}
-                    className="group relative overflow-hidden rounded-2xl border border-border/40 bg-background/60 p-5 backdrop-blur transition-all hover:border-border/60 hover:shadow-lg"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-foreground/[0.04] via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 -z-10" />
-                    <div className="relative space-y-2">
-                      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-foreground/40">
-                        {item.title}
-                      </p>
-                      <p className="text-sm leading-relaxed text-foreground/70">
-                        {item.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
+                {highlights.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.1 * index }}
+                      whileHover={{ y: -4 }}
+                      className="group relative overflow-hidden rounded-2xl border border-border/40 bg-background/60 p-5 backdrop-blur transition-all hover:border-border/60 hover:shadow-lg"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-foreground/[0.04] via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 -z-10" />
+                      <div className="relative space-y-2">
+                        <div className="flex items-center gap-2">
+                          <Icon className="h-4 w-4 text-foreground/50" />
+                          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-foreground/40">
+                            {item.title}
+                          </p>
+                        </div>
+                        <p className="text-sm leading-relaxed text-foreground/70">
+                          {item.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
 
               {/* CTA Buttons */}
@@ -171,17 +191,28 @@ export function GlassmorphismPortfolioBlock() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="grid grid-cols-1 gap-4"
+                className="flex flex-wrap gap-4"
               >
                 <Button
                   size="lg"
                   onClick={() =>
-                    window.open("https://casper.studio/case-studies", "_blank")
+                    window.open("https://github.com/AnshCoderRepo", "_blank")
                   }
-                  className="h-12 w-full gap-2 rounded-full px-8 text-sm uppercase tracking-[0.25em] transition-all hover:shadow-lg sm:w-auto"
+                  className="h-12 gap-2 rounded-full px-8 text-sm uppercase tracking-[0.25em] transition-all hover:shadow-lg"
                 >
-                  View case studies
+                  View GitHub
                   <ArrowUpRight className="h-4 w-4" />
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={() =>
+                    window.open("https://linkedin.com/in/Ansh-Adarsh", "_blank")
+                  }
+                  className="h-12 gap-2 rounded-full px-8 text-sm uppercase tracking-[0.25em] transition-all hover:shadow-lg"
+                >
+                  LinkedIn
+                  <Linkedin className="h-4 w-4" />
                 </Button>
               </motion.div>
             </div>
@@ -200,11 +231,12 @@ export function GlassmorphismPortfolioBlock() {
                     className="relative mb-6"
                   >
                     <div className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-2xl" />
-                    <img
-                      src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=640&q=80"
-                      alt="Casper Lightman"
-                      className="relative h-32 w-32 rounded-full border border-border/40 object-cover shadow-[0_25px_60px_rgba(15,23,42,0.3)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.6)]"
-                    />
+                    {/* Initials avatar */}
+                    <div className="relative h-32 w-32 rounded-full border border-border/40 shadow-[0_25px_60px_rgba(15,23,42,0.3)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.6)] bg-gradient-to-br from-violet-500 via-purple-600 to-indigo-700 flex items-center justify-center">
+                      <span className="text-4xl font-bold text-white tracking-tight select-none">
+                        AA
+                      </span>
+                    </div>
                   </motion.div>
 
                   <motion.div
@@ -215,10 +247,10 @@ export function GlassmorphismPortfolioBlock() {
                     className="space-y-1"
                   >
                     <h3 className="text-2xl font-semibold tracking-tight text-foreground">
-                      Casper Lightman
+                      Ansh Adarsh
                     </h3>
                     <p className="text-xs font-semibold uppercase tracking-[0.35em] text-foreground/45">
-                      Product Designer · Motion Director
+                      Software Engineer · Full-Stack Developer
                     </p>
                   </motion.div>
 
@@ -229,8 +261,9 @@ export function GlassmorphismPortfolioBlock() {
                     transition={{ duration: 0.5, delay: 0.3 }}
                     className="mt-4 max-w-sm text-sm leading-relaxed text-foreground/70"
                   >
-                    Partnering with future-facing teams to choreograph
-                    interfaces that feel cinematic yet effortless.
+                    Building scalable full-stack applications with Next.js, React, Node.js,
+                    and modern cloud-ready stacks. Open to impactful collaborations and
+                    freelance projects.
                   </motion.p>
                 </div>
 
@@ -249,8 +282,8 @@ export function GlassmorphismPortfolioBlock() {
                         key={social.label}
                         variants={itemVariants}
                         href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        target={social.href.startsWith("http") ? "_blank" : undefined}
+                        rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
                         className="group flex items-center justify-between rounded-2xl border border-border/40 bg-background/70 px-4 py-3 text-left transition-all hover:-translate-y-0.5 hover:border-border/60 hover:bg-background/80 hover:shadow-md"
                         whileHover={{ scale: 1.01 }}
                         whileTap={{ scale: 0.985 }}

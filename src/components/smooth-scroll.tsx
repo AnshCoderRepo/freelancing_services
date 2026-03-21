@@ -10,21 +10,20 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Initialize Lenis
+    // Initialize Lenis with optimized settings for performance and "snap" feel
     const lenis = new Lenis({
-      duration: 1.5,
-      easing: (t) => 1 - Math.pow(1 - t, 4), // Quartic out for buttery feel
+      duration: 1.2, // Slightly faster
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential out for snappier start
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1.1,
-      touchMultiplier: 2,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
       infinite: false,
     });
 
     lenisRef.current = lenis;
 
-    // Animation frame for Lenis
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
