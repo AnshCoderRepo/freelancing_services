@@ -59,11 +59,12 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
             ? `translateY(calc(-100px + ${translationY}px)) translateX(${translationX}px) rotate(${rotation}deg) scale(1)`
             : "translateY(0px) translateX(0px) rotate(0deg) scale(0.4)",
           opacity: isSelected ? 0 : isVisible ? 1 : 0,
-          transition: `all 700ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
-          zIndex: 10 + index,
-          left: "-40px",
-          top: "-56px",
-        }}
+           transition: `transform 700ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, opacity 700ms linear ${delay}ms`,
+           zIndex: 10 + index,
+           left: "-40px",
+           top: "-56px",
+           willChange: "transform, opacity",
+         }}
         onClick={(e) => {
           e.stopPropagation();
           onClick();
@@ -492,6 +493,8 @@ const AnimatedFolder: React.FC<AnimatedFolderProps> = ({ title, projects, classN
               transformOrigin: "bottom center",
               transform: isHovered ? "rotateX(35deg) translateY(14px)" : "rotateX(0deg) translateY(0)",
               transition: "transform 700ms cubic-bezier(0.16, 1, 0.3, 1)",
+              transformStyle: "preserve-3d",
+              willChange: "transform, opacity, filter",
               zIndex: 30,
             }}
           />

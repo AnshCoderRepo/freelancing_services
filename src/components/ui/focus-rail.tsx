@@ -137,12 +137,22 @@ export function FocusRail({
     }
   };
 
-  const visibleIndices = [-2, -1, 0, 1, 2];
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const mql = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
+
+  const visibleIndices = isMobile ? [-1, 0, 1] : [-2, -1, 0, 1, 2];
 
   return (
     <div
       className={cn(
-        "group relative flex h-[600px] w-full flex-col overflow-hidden bg-neutral-950 text-white outline-none select-none overflow-x-hidden",
+        "group relative flex h-[500px] md:h-[600px] w-full flex-col overflow-hidden bg-neutral-950 text-white outline-none select-none overflow-x-hidden",
         className
       )}
       onMouseEnter={() => setIsHovering(true)}
@@ -193,13 +203,13 @@ export function FocusRail({
             const dist = Math.abs(offset);
 
             // Dynamic transforms
-            const xOffset = offset * 320;
-            const zOffset = -dist * 180;
+            const xOffset = offset * (isMobile ? 240 : 320);
+            const zOffset = -dist * (isMobile ? 120 : 180);
             const scale = isCenter ? 1 : 0.85;
             const rotateY = offset * -20;
 
             const opacity = isCenter ? 1 : Math.max(0.1, 1 - dist * 0.5);
-            const blur = isCenter ? 0 : dist * 6;
+            const blur = isCenter ? 0 : dist * 2;
             const brightness = isCenter ? 1 : 0.5;
 
             return (
@@ -219,7 +229,6 @@ export function FocusRail({
                   filter: `blur(${blur}px) brightness(${brightness})`,
                 }}
                 transition={{
-                  // Use bouncier spring for scale to create the "Tap" effect
                   scale: TAP_SPRING,
                   x: BASE_SPRING,
                   z: BASE_SPRING,
@@ -229,6 +238,7 @@ export function FocusRail({
                 }}
                 style={{
                   transformStyle: "preserve-3d",
+                  willChange: "transform, filter",
                 }}
                 onClick={() => {
                   if (offset !== 0) setActive((p) => p + offset);

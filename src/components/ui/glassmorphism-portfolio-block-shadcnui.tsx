@@ -83,25 +83,26 @@ const socialLinks: SocialLink[] = [
   },
 ];
 
-const listVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
     transition: {
-      duration: 0.4,
-      staggerChildren: 0.08,
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
     },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.35,
+      type: "spring",
+      stiffness: 120,
+      damping: 14,
     },
   },
 };
@@ -155,35 +156,38 @@ export function GlassmorphismPortfolioBlock() {
               </div>
 
               {/* Highlights grid */}
-              <div className="grid gap-4 sm:grid-cols-1">
-                {highlights.map((item, index) => {
+              <motion.div 
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                className="grid gap-4 sm:grid-cols-1"
+              >
+                {highlights.map((item) => {
                   const Icon = item.icon;
                   return (
-                    <motion.div
-                      key={item.title}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.1 * index }}
-                      whileHover={{ y: -4 }}
+                    <motion.div 
+                      key={item.title} 
+                      variants={itemVariants}
+                      whileHover={{ y: -4, scale: 1.01 }}
                       className="group relative overflow-hidden rounded-2xl border border-border/40 bg-background/60 p-5 backdrop-blur transition-all hover:border-border/60 hover:shadow-lg"
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-foreground/[0.04] via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 -z-10" />
                       <div className="relative space-y-2">
-                        <div className="flex items-center gap-2">
-                          <Icon className="h-4 w-4 text-foreground/50" />
-                          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-foreground/40">
-                            {item.title}
-                          </p>
-                        </div>
-                        <p className="text-sm leading-relaxed text-foreground/70">
-                          {item.description}
-                        </p>
-                      </div>
+                         <div className="flex items-center gap-2">
+                           <Icon className="h-4 w-4 text-foreground/50 transition-colors group-hover:text-primary" />
+                           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-foreground/40 group-hover:text-foreground/60 transition-colors">
+                             {item.title}
+                           </p>
+                         </div>
+                         <p className="text-sm leading-relaxed text-foreground/70">
+                           {item.description}
+                         </p>
+                       </div>
                     </motion.div>
                   );
                 })}
-              </div>
+              </motion.div>
 
               {/* CTA Buttons */}
               <motion.div
@@ -269,7 +273,7 @@ export function GlassmorphismPortfolioBlock() {
 
                 {/* Social links */}
                 <motion.div
-                  variants={listVariants}
+                  variants={containerVariants}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-80px" }}
@@ -284,9 +288,13 @@ export function GlassmorphismPortfolioBlock() {
                         href={social.href}
                         target={social.href.startsWith("http") ? "_blank" : undefined}
                         rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="group flex items-center justify-between rounded-2xl border border-border/40 bg-background/70 px-4 py-3 text-left transition-all hover:-translate-y-0.5 hover:border-border/60 hover:bg-background/80 hover:shadow-md"
-                        whileHover={{ scale: 1.01 }}
-                        whileTap={{ scale: 0.985 }}
+                        className="group flex items-center justify-between rounded-2xl border border-border/40 bg-background/70 px-4 py-3 text-left transition-all hover:border-border/60 hover:bg-background/80 hover:shadow-md"
+                        whileHover={{ 
+                          scale: 1.02, 
+                          x: 4,
+                          transition: { type: "spring", stiffness: 400, damping: 10 } 
+                        }}
+                        whileTap={{ scale: 0.97 }}
                       >
                         <div className="flex items-center gap-3">
                           <span className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/70 text-foreground/80 shadow-[0_10px_30px_rgba(15,23,42,0.2)] transition-all group-hover:shadow-[0_10px_30px_rgba(15,23,42,0.3)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.4)] dark:group-hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]">

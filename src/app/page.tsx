@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { GlassmorphismPortfolioBlock } from "@/components/ui/glassmorphism-portfolio-block-shadcnui";
 import { PortfolioFolderSection } from "@/components/ui/3d-folder";
 import { TestimonialsSection } from "@/components/ui/testimonial-v2";
+import { OptimisticNewsletter } from "@/components/newsletter-form";
 import { Suspense } from "react";
 
 // Lazy load heavy components for better initial loading time
@@ -114,6 +115,11 @@ export default function Home() {
             Ansh Adarsh &copy; 2026 • Crafted with precision
           </p>
         </div>
+        
+        {/* Newsletter Section - Optimistic UI Demo */}
+        <section className="w-full max-w-5xl py-24 px-4 md:px-8">
+           <OptimisticNewsletter />
+        </section>
       </main>
 
       {/* Social / Testimonials Section */}

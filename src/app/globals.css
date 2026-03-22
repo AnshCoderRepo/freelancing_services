@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@supports (scrollbar-gutter: stable) {
+  html {
+    scrollbar-gutter: stable;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
