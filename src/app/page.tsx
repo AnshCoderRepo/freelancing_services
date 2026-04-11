@@ -5,6 +5,7 @@ import { GlassmorphismPortfolioBlock } from "@/components/ui/glassmorphism-portf
 import { PortfolioFolderSection } from "@/components/ui/3d-folder";
 import { TestimonialsSection } from "@/components/ui/testimonial-v2";
 import { OptimisticNewsletter } from "@/components/newsletter-form";
+import { FlagshipProjectSection } from "@/components/flagship-project-section";
 import { Suspense } from "react";
 
 // Lazy load heavy components for better initial loading time
@@ -75,16 +76,21 @@ export default function Home() {
           </Suspense>
         </section>
 
+        {/* Flagship Project Showcase */}
+        <section id="flagship" className="w-full relative z-10">
+            <FlagshipProjectSection />
+        </section>
+
         {/* Profile Block */}
-        <section className="w-full max-w-7xl px-4 md:px-8">
+        <section id="about" className="w-full max-w-7xl px-4 md:px-8 relative z-20 -mt-24 md:-mt-32">
           <GlassmorphismPortfolioBlock />
         </section>
 
         {/* Projects Rail */}
-        <section className="w-full pb-20">
-          <div className="mb-12 text-center px-6">
+        <section id="projects" className="w-full py-24 md:py-32 bg-zinc-950 relative z-10 overflow-hidden">
+          <div className="mb-16 text-center px-6">
              <span className="text-[10px] uppercase font-bold tracking-[0.5em] text-neutral-500 mb-4 block">Interactive Gallery</span>
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-foreground mb-4">
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white mb-4">
               Built <span className="text-primary italic">for Performance</span>
             </h2>
             <p className="text-neutral-400 text-sm md:text-base max-w-xl mx-auto">
@@ -97,7 +103,7 @@ export default function Home() {
         </section>
 
         {/* 3D Folder Section */}
-        <section className="w-full bg-neutral-900/5 dark:bg-zinc-900/10 py-24">
+        <section id="details" className="w-full bg-zinc-50 dark:bg-zinc-900/10 py-24 border-t border-black/5 dark:border-white/5">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
             <PortfolioFolderSection />
           </div>
@@ -110,16 +116,16 @@ export default function Home() {
            </Suspense>
         </section>
         
+        {/* Newsletter Section - Optimistic UI Demo */}
+        <section className="w-full max-w-5xl py-24 px-4 md:px-8">
+           <OptimisticNewsletter />
+        </section>
+
         <div className="pb-24 text-center">
            <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-500 font-bold">
             Ansh Adarsh &copy; 2026 • Crafted with precision
           </p>
         </div>
-        
-        {/* Newsletter Section - Optimistic UI Demo */}
-        <section className="w-full max-w-5xl py-24 px-4 md:px-8">
-           <OptimisticNewsletter />
-        </section>
       </main>
 
       {/* Social / Testimonials Section */}

@@ -14,9 +14,9 @@ export default function GlassNavbar({
 
   return (
     <div 
-      className="relative w-full h-24 md:h-32 flex items-center justify-center p-4 md:p-8 overflow-hidden bg-transparent"
+      className="relative w-full h-24 md:h-32 flex items-center justify-center p-4 md:p-8 overflow-hidden bg-transparent pointer-events-none"
     > 
-      <nav className="relative w-full max-w-6xl h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-between px-6 md:px-8 shadow-2xl z-50">
+      <nav className="relative w-full max-w-6xl h-14 bg-white/70 dark:bg-black/40 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-full flex items-center justify-between px-6 md:px-8 shadow-xl z-50 pointer-events-auto">
         {/* Logo Section */}
         <div className="flex items-center gap-3">
           {showLogo && (
@@ -26,7 +26,7 @@ export default function GlassNavbar({
                 alt="Logo" 
                 width={120} 
                 height={40} 
-                className="h-6 md:h-8 w-auto object-contain" 
+                className="h-6 md:h-8 w-auto object-contain dark:invert-[0.1]" 
               />
             </div>
           )}
@@ -39,24 +39,24 @@ export default function GlassNavbar({
               <a 
                 key={index}
                 href={`#${item.toLowerCase()}`} 
-                className="text-white font-medium text-sm px-4 py-2 rounded-full 
+                className="text-zinc-600 dark:text-zinc-300 font-medium text-sm px-4 py-2 rounded-full 
                 transition-all duration-300 relative overflow-hidden
-              hover:bg-white/10 hover:-translate-y-0.5"
+              hover:bg-zinc-100 dark:hover:bg-white/10 hover:-translate-y-0.5 hover:text-zinc-900 dark:hover:text-white"
               >
                 {item}
               </a>
             ))}
           </div>
           
-          <div className="flex items-center gap-4 border-l border-white/20 pl-6 ml-2">
+          <div className="flex items-center gap-4 border-l border-zinc-200 dark:border-white/20 pl-6 ml-2">
             <Show when="signed-out">
               <SignInButton mode="modal">
-                <button className="text-white text-xs lg:text-sm font-medium hover:text-white/80 transition-colors">
+                <button className="text-zinc-600 dark:text-zinc-300 text-xs lg:text-sm font-medium hover:text-zinc-900 dark:hover:text-white transition-colors">
                   Login
                 </button>
               </SignInButton>
               <SignUpButton mode="modal">
-                <button className="bg-white text-black px-4 py-2 rounded-full text-xs lg:text-sm font-semibold hover:bg-white/90 transition-all active:scale-95">
+                <button className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-4 py-2 rounded-full text-xs lg:text-sm font-semibold hover:bg-zinc-800 dark:hover:bg-white/90 transition-all active:scale-95 shadow-lg shadow-zinc-200 dark:shadow-none">
                   Sign Up
                 </button>
               </SignUpButton>
@@ -74,7 +74,7 @@ export default function GlassNavbar({
             </Show>
           <button 
             onClick={() => setIsOpen(!isOpen)}
-            className="text-white p-2 bg-white/10 rounded-full border border-white/10 active:scale-95 transition-all"
+            className="text-zinc-600 dark:text-zinc-300 p-2 bg-zinc-100 dark:bg-white/10 rounded-full border border-zinc-200 dark:border-white/10 active:scale-95 transition-all"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -88,7 +88,7 @@ export default function GlassNavbar({
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="absolute top-24 left-4 right-4 z-40 bg-black/80 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 flex flex-col gap-6 md:hidden shadow-2xl"
+            className="absolute top-24 left-4 right-4 z-40 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-2xl border border-zinc-200 dark:border-white/10 rounded-3xl p-6 flex flex-col gap-6 md:hidden shadow-2xl"
           >
             <div className="flex flex-col gap-2">
               {navItems.map((item, index) => (
@@ -96,7 +96,7 @@ export default function GlassNavbar({
                   key={index}
                   href={`#${item.toLowerCase()}`} 
                   onClick={() => setIsOpen(false)}
-                  className="text-white font-medium text-lg p-4 rounded-2xl hover:bg-white/10 transition-colors border border-transparent hover:border-white/10"
+                  className="text-zinc-700 dark:text-zinc-200 font-medium text-lg p-4 rounded-2xl hover:bg-zinc-50 dark:hover:bg-white/5 transition-colors border border-transparent hover:border-zinc-100 dark:hover:border-white/10"
                 >
                   {item}
                 </a>
@@ -104,14 +104,14 @@ export default function GlassNavbar({
             </div>
             
             <Show when="signed-out">
-              <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
+              <div className="flex flex-col gap-3 pt-4 border-t border-zinc-100 dark:border-white/10">
                 <SignInButton mode="modal">
-                  <button className="w-full text-white text-base font-medium py-3 rounded-2xl border border-white/10 hover:bg-white/5 transition-colors">
+                  <button className="w-full text-zinc-600 dark:text-zinc-300 text-base font-medium py-3 rounded-2xl border border-zinc-200 dark:border-white/10 hover:bg-zinc-50 dark:hover:bg-white/5 transition-colors">
                     Login
                   </button>
                 </SignInButton>
                 <SignUpButton mode="modal">
-                  <button className="w-full bg-white text-black py-4 rounded-2xl text-base font-bold hover:bg-white/90 active:scale-95 transition-all shadow-xl shadow-white/5">
+                  <button className="w-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 py-4 rounded-2xl text-base font-bold hover:bg-zinc-800 dark:hover:bg-white/90 active:scale-95 transition-all shadow-xl shadow-zinc-200 dark:shadow-none">
                     Sign Up
                   </button>
                 </SignUpButton>
@@ -123,3 +123,4 @@ export default function GlassNavbar({
     </div>
   )
 }
+
