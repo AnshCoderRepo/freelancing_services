@@ -152,7 +152,7 @@ export function FocusRail({
   return (
     <div
       className={cn(
-        "group relative flex h-[500px] md:h-[600px] w-full flex-col overflow-hidden bg-neutral-950 text-white outline-none select-none overflow-x-hidden",
+        "group relative flex h-[500px] md:h-[600px] w-full flex-col overflow-hidden text-white outline-none select-none overflow-x-hidden",
         className
       )}
       onMouseEnter={() => setIsHovering(true)}
