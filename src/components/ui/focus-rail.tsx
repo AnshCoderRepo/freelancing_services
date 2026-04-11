@@ -271,18 +271,19 @@ export function FocusRail({
                 className="space-y-2"
               >
                 {activeItem.meta && (
-                  <span className="text-xs font-medium uppercase tracking-wider text-emerald-400">
+                  <span className="text-[14px] font-semibold uppercase tracking-tight text-apple-blue">
                     {activeItem.meta}
                   </span>
                 )}
-                <h2 className="text-3xl font-bold tracking-tight md:text-4xl text-white">
+                <h2 className="text-[34px] md:text-[40px] apple-display text-white tracking-tighter">
                   {activeItem.title}
                 </h2>
                 {activeItem.description && (
-                  <p className="max-w-md text-neutral-400">
+                  <p className="max-w-md text-[17px] text-white/70 font-normal leading-[1.47] tracking-tight">
                     {activeItem.description}
                   </p>
                 )}
+
               </motion.div>
             </AnimatePresence>
           </div>

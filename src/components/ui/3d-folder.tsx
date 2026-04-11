@@ -509,17 +509,18 @@ const AnimatedFolder: React.FC<AnimatedFolderProps> = ({ title, projects, classN
         {/* Label */}
         <div className="text-center relative z-40">
           <h3
-            className="text-xl font-bold text-foreground mt-4 transition-all duration-500 tracking-tight"
+            className="text-[21px] apple-display text-foreground mt-4 transition-all duration-500 tracking-tight"
             style={{
               transform: isHovered ? "translateY(2px)" : "translateY(0)",
             }}
           >
             {title}
           </h3>
-          <p className="text-sm font-medium text-neutral-400 mt-1 transition-all duration-500" style={{ opacity: isHovered ? 0.8 : 1 }}>
-            {projects.length} Showcase {projects.length === 1 ? "Module" : "Modules"}
+          <p className="text-[14px] font-normal text-[#86868b] mt-1 transition-all duration-500" style={{ opacity: isHovered ? 0.8 : 1 }}>
+             {projects.length} {projects.length === 1 ? "module" : "modules"}
           </p>
         </div>
+
       </div>
 
       <ImageLightbox
@@ -629,19 +630,14 @@ export function PortfolioFolderSection() {
       <div className="max-w-7xl mx-auto">
         {/* Section heading */}
         <div className="mb-16 md:mb-24 text-center">
-          <Badge
-            variant="outline"
-            className="mb-8 rounded-full border-white/10 bg-white/5 px-6 py-2 text-[10px] uppercase tracking-[0.4em] text-neutral-400"
-          >
-            Selected Works
-          </Badge>
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 text-foreground">
-            Project <span className="text-primary italic">Deep-Dive</span>
+          <h2 className="text-[40px] md:text-[56px] apple-display text-foreground mb-6 tracking-tighter">
+            Architectural <span className="text-apple-blue italic">Insight.</span>
           </h2>
-          <p className="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Hover over certificates to reveal interactive modules and architectural breakdowns.
+          <p className="text-[#86868b] text-[17px] md:text-[21px] max-w-2xl mx-auto leading-relaxed">
+            Hover over interactive modules to reveal deep-architectural breakdowns and visual modules.
           </p>
         </div>
+
         
         {/* Grid - Centered items with responsive sizing */}
         <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16 lg:gap-24">

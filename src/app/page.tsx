@@ -66,70 +66,80 @@ const FOCUS_RAIL_ITEMS: FocusRailItem[] = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-zinc-50 dark:bg-black overflow-x-hidden">
-      <main className="flex flex-1 flex-col items-center justify-start gap-12 md:gap-32 w-full p-0">
+    <div className="flex flex-col min-h-screen bg-[#f5f5f7] dark:bg-black overflow-x-hidden">
+      <main className="flex flex-1 flex-col items-center justify-start w-full p-0">
         
-        {/* Hero Section */}
-        <section className="w-full max-w-7xl pt-24 pb-12 px-4 md:px-8">
-          <Suspense fallback={<div className="h-[570px] bg-black/20 rounded-3xl" />}>
-            <SplineSceneBasic />
-          </Suspense>
+        {/* Cinematic Hero / 3D Robot */}
+        <section id="home" className="w-full bg-black text-white relative z-20 flex flex-col items-center px-4 md:px-6 pt-20">
+            <div className="w-full max-w-[1200px]">
+              <Suspense fallback={<div className="h-[570px] w-full bg-black/20 animate-pulse rounded-3xl" />}>
+                <SplineSceneBasic />
+              </Suspense>
+            </div>
         </section>
 
-        {/* Flagship Project Showcase */}
-        <section id="flagship" className="w-full relative z-10">
-            <FlagshipProjectSection />
+
+        {/* Profile Insight - Light Section */}
+        <section id="about" className="w-full bg-[#f5f5f7] text-[#1d1d1f] py-24 md:py-32 flex flex-col items-center px-4 md:px-6">
+          <div className="w-full max-w-[980px]">
+            <GlassmorphismPortfolioBlock />
+          </div>
         </section>
 
-        {/* Profile Block */}
-        <section id="about" className="w-full max-w-7xl px-4 md:px-8 relative z-20 -mt-24 md:-mt-32">
-          <GlassmorphismPortfolioBlock />
-        </section>
-
-        {/* Projects Rail */}
-        <section id="projects" className="w-full py-24 md:py-32 bg-zinc-950 relative z-10 overflow-hidden">
-          <div className="mb-16 text-center px-6">
-             <span className="text-[10px] uppercase font-bold tracking-[0.5em] text-neutral-500 mb-4 block">Interactive Gallery</span>
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white mb-4">
-              Built <span className="text-primary italic">for Performance</span>
+        {/* Interactive Gallery - Dark Section */}
+        <section id="projects" className="w-full bg-black text-white py-24 md:py-32 flex flex-col items-center px-4 md:px-6">
+          <div className="w-full max-w-[980px] text-center mb-16 px-6">
+            <h2 className="text-[40px] md:text-[56px] apple-display mb-4 tracking-tighter">
+              Built <span className="text-apple-blue italic">for Performance.</span>
             </h2>
-            <p className="text-neutral-400 text-sm md:text-base max-w-xl mx-auto">
-              Explore my primary architectural works through the focus rail. Use your wheel or swipe to navigate.
+            <p className="text-[#86868b] text-[17px] md:text-[21px] font-normal max-w-2xl mx-auto">
+              Explore primary architectural works through high-performance focus rails.
             </p>
           </div>
-          <Suspense fallback={<div className="h-[600px] bg-black/10" />}>
-            <FocusRail items={FOCUS_RAIL_ITEMS} autoPlay={false} loop={true} />
-          </Suspense>
-        </section>
-
-        {/* 3D Folder Section */}
-        <section id="details" className="w-full bg-zinc-50 dark:bg-zinc-900/10 py-24 border-t border-black/5 dark:border-white/5">
-          <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <PortfolioFolderSection />
+          <div className="w-full">
+            <Suspense fallback={<div className="h-[600px] bg-white/5 animate-pulse" />}>
+              <FocusRail items={FOCUS_RAIL_ITEMS} autoPlay={false} loop={true} />
+            </Suspense>
           </div>
         </section>
 
-        {/* Scroll Showcase */}
-        <section className="w-full max-w-7xl py-12 md:py-32 px-4 md:px-8">
-           <Suspense fallback={<div className="h-[800px] bg-black/10" />}>
-            <HeroScrollDemo />
-           </Suspense>
-        </section>
-        
-        {/* Newsletter Section - Optimistic UI Demo */}
-        <section className="w-full max-w-5xl py-24 px-4 md:px-8">
-           <OptimisticNewsletter />
+        {/* 3D Deep Dive - Light Section */}
+        <section id="details" className="w-full bg-[#f5f5f7] text-[#1d1d1f] py-24 md:py-32 flex flex-col items-center px-4 md:px-6 border-t border-black/5">
+          <div className="w-full max-w-[980px]">
+             <div className="text-center mb-16">
+               <h2 className="text-[40px] md:text-[56px] apple-display mb-4 tracking-tighter">
+                Project <span className="text-apple-blue italic">Deep-Dive.</span>
+               </h2>
+             </div>
+             <PortfolioFolderSection />
+          </div>
         </section>
 
-        <div className="pb-24 text-center">
-           <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-500 font-bold">
-            Ansh Adarsh &copy; 2026 • Crafted with precision
+        {/* Scroll Showcase - Dark Section */}
+        <section className="w-full bg-black text-white py-24 md:py-48 flex flex-col items-center px-4 md:px-6">
+          <div className="w-full max-w-[980px]">
+             <Suspense fallback={<div className="h-[800px] bg-white/5" />}>
+               <HeroScrollDemo />
+             </Suspense>
+          </div>
+        </section>
+        
+        {/* Newsletter - Light Tone */}
+        <section className="w-full bg-[#fafafc] py-24 flex flex-col items-center px-4 md:px-6">
+           <div className="w-full max-w-[600px]">
+             <OptimisticNewsletter />
+           </div>
+        </section>
+
+        <footer className="w-full py-12 bg-[#f5f5f7] border-t border-black/5 text-center px-6">
+          <p className="text-[12px] text-[#86868b] font-normal tracking-tight">
+            Ansh Adarsh &copy; 2026 • Crafted with sculptural precision.
           </p>
-        </div>
+        </footer>
       </main>
 
       {/* Social / Testimonials Section */}
-      <section className="w-full border-t border-white/5 bg-zinc-50/50 dark:bg-zinc-900/50 backdrop-blur-xl">
+      <section className="w-full bg-white border-t border-black/5">
         <TestimonialsSection />
       </section>
 
@@ -137,5 +147,6 @@ export default function Home() {
         <StackedCircularFooterDemo />
       </Suspense>
     </div>
-  );
+  )
 }
+
