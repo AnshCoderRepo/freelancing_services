@@ -1,6 +1,6 @@
 'use client'
+
 import Image from "next/image"
-import { SplineScene } from "@/components/ui/splite";
 import { Card } from "@/components/ui/card"
 import { Spotlight } from "@/components/ui/spotlight"
  
@@ -27,19 +27,30 @@ export function SplineSceneBasic() {
           <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
             ASSolutions
           </h1>
-          <p className="mt-4 text-neutral-300 max-w-lg">
-            Inspired  by Technology & Driven by Innovation.
+          <p className="mt-4 text-neutral-300 max-w-lg text-lg">
+            Inspired by Technology & Driven by Innovation.
           </p>
+          <div className="mt-8">
+            <button className="px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-neutral-200 transition-colors">
+              Get Started
+            </button>
+          </div>
         </div>
 
-        {/* Right content */}
-        <div className="flex-1 relative">
-          <SplineScene 
-            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className="w-full h-full"
-          />
+        {/* Right content - Replaced Spline with Static Image */}
+        <div className="flex-1 relative flex items-center justify-center p-4">
+          <div className="relative w-full h-[300px] md:h-[450px]">
+            <Image
+              src="/hero_ai_robot_minimal_1776118762179.png"
+              alt="Future Tech"
+              fill
+              className="object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+              priority
+            />
+          </div>
         </div>
       </div>
     </Card>
   )
 }
+

@@ -2,21 +2,12 @@
 
 import dynamic from "next/dynamic";
 import { GlassmorphismPortfolioBlock } from "@/components/ui/glassmorphism-portfolio-block-shadcnui";
-import { PortfolioFolderSection } from "@/components/ui/3d-folder";
+
 import { TestimonialsSection } from "@/components/ui/testimonial-v2";
 import { OptimisticNewsletter } from "@/components/newsletter-form";
 import { FlagshipProjectSection } from "@/components/flagship-project-section";
 import { Suspense } from "react";
-
-// Lazy load heavy components for better initial loading time
-const SplineSceneBasic = dynamic(() => import("@/components/spline-scene-basic").then(mod => mod.SplineSceneBasic), {
-  ssr: false,
-  loading: () => <div className="h-[570px] w-full bg-black/20 animate-pulse rounded-3xl" />
-});
-
-const HeroScrollDemo = dynamic(() => import("@/components/hero-scroll-demo").then(mod => mod.HeroScrollDemo), {
-  ssr: false
-});
+import { SimpleServices } from "@/components/simple-services";
 
 const FocusRail = dynamic(() => import("@/components/ui/focus-rail").then(mod => mod.FocusRail), {
   ssr: false,
@@ -67,24 +58,17 @@ const FOCUS_RAIL_ITEMS: FocusRailItem[] = [
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-[#f5f5f7] dark:bg-black overflow-x-hidden">
-      <main className="flex flex-1 flex-col items-center justify-start w-full p-0">
+      <main className="flex flex-1 flex-col items-center justify-start w-full p-0 pt-20">
         
-        {/* Cinematic Hero / 3D Robot */}
-        <section id="home" className="w-full bg-black text-white relative z-20 flex flex-col items-center px-4 md:px-6 pt-20">
-            <div className="w-full max-w-[1200px]">
-              <Suspense fallback={<div className="h-[570px] w-full bg-black/20 animate-pulse rounded-3xl" />}>
-                <SplineSceneBasic />
-              </Suspense>
-            </div>
-        </section>
-
-
         {/* Profile Insight - Light Section */}
         <section id="about" className="w-full bg-[#f5f5f7] text-[#1d1d1f] py-24 md:py-32 flex flex-col items-center px-4 md:px-6">
           <div className="w-full max-w-[980px]">
             <GlassmorphismPortfolioBlock />
           </div>
         </section>
+
+        {/* Flagship Product Showcase - High Performance Replacement */}
+        <FlagshipProjectSection />
 
         {/* Interactive Gallery - Dark Section */}
         <section id="projects" className="w-full bg-black text-white py-24 md:py-32 flex flex-col items-center px-4 md:px-6">
@@ -103,27 +87,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3D Deep Dive - Light Section */}
-        <section id="details" className="w-full bg-[#f5f5f7] text-[#1d1d1f] py-24 md:py-32 flex flex-col items-center px-4 md:px-6 border-t border-black/5">
-          <div className="w-full max-w-[980px]">
-             <div className="text-center mb-16">
-               <h2 className="text-[40px] md:text-[56px] apple-display mb-4 tracking-tighter">
-                Project <span className="text-apple-blue italic">Deep-Dive.</span>
-               </h2>
-             </div>
-             <PortfolioFolderSection />
-          </div>
+        {/* Service Deep Dive - Lightweight Replacement */}
+        <section id="details" className="w-full">
+           <SimpleServices />
         </section>
 
-        {/* Scroll Showcase - Dark Section */}
-        <section className="w-full bg-black text-white py-24 md:py-48 flex flex-col items-center px-4 md:px-6">
-          <div className="w-full max-w-[980px]">
-             <Suspense fallback={<div className="h-[800px] bg-white/5" />}>
-               <HeroScrollDemo />
-             </Suspense>
-          </div>
-        </section>
-        
         {/* Newsletter - Light Tone */}
         <section className="w-full bg-[#fafafc] py-24 flex flex-col items-center px-4 md:px-6">
            <div className="w-full max-w-[600px]">
@@ -133,7 +101,7 @@ export default function Home() {
 
         <footer className="w-full py-12 bg-[#f5f5f7] border-t border-black/5 text-center px-6">
           <p className="text-[12px] text-[#86868b] font-normal tracking-tight">
-            Ansh Adarsh &copy; 2026 • Crafted with sculptural precision.
+            Ansh Adarsh &copy; 2026 • Optimized for speed and precision.
           </p>
         </footer>
       </main>
@@ -149,4 +117,5 @@ export default function Home() {
     </div>
   )
 }
+
 
