@@ -7,7 +7,7 @@ import { TestimonialsSection } from "@/components/ui/testimonial-v2";
 import { OptimisticNewsletter } from "@/components/newsletter-form";
 import { FlagshipProjectSection } from "@/components/flagship-project-section";
 import { Suspense } from "react";
-import { SimpleServices } from "@/components/simple-services";
+import { PortfolioFolderSection } from "@/components/ui/3d-folder";
 
 const FocusRail = dynamic(() => import("@/components/ui/focus-rail").then(mod => mod.FocusRail), {
   ssr: false,
@@ -87,10 +87,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Service Deep Dive - Lightweight Replacement */}
-        <section id="details" className="w-full">
-           <SimpleServices />
-        </section>
+        {/* Service Deep Dive - Interactive Folder Showcase Restored */}
+        <PortfolioFolderSection />
+
 
         {/* Newsletter - Light Tone */}
         <section className="w-full bg-[#fafafc] py-24 flex flex-col items-center px-4 md:px-6">
