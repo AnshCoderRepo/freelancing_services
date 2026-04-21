@@ -38,7 +38,7 @@ export function GlassmorphismPortfolioBlock() {
         <div className="space-y-12">
            <div className="space-y-6">
              <h2 className="text-[40px] md:text-[56px] apple-display text-[#1d1d1f] tracking-tighter leading-[1.07]">
-               {BRANDING.name}. <br/>
+               <span>{BRANDING.name}.</span><br/>
                <span className="text-[#86868b]">{BRANDING.role}.</span>
              </h2>
              <p className="text-[17px] md:text-[19px] text-[#1d1d1f] leading-[1.47] font-normal max-w-lg">
