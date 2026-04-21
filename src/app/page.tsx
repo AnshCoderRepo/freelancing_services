@@ -1,11 +1,9 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { GlassmorphismPortfolioBlock } from "@/components/ui/glassmorphism-portfolio-block-shadcnui";
 
 import { TestimonialsSection } from "@/components/ui/testimonial-v2";
 import { OptimisticNewsletter } from "@/components/newsletter-form";
-import { FlagshipProjectSection } from "@/components/flagship-project-section";
 import { Suspense } from "react";
 import { PortfolioFolderSection } from "@/components/ui/3d-folder";
 
@@ -13,6 +11,8 @@ const FocusRail = dynamic(() => import("@/components/ui/focus-rail").then(mod =>
   ssr: false,
   loading: () => <div className="h-[600px] w-full bg-black/10 animate-pulse" />
 });
+import { TIMELINE_DATA } from "@/data/timeline";
+import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 
 const StackedCircularFooterDemo = dynamic(() => import("@/components/ui/stacked-circular-footer-demo").then(mod => mod.StackedCircularFooterDemo), {
   ssr: false
@@ -20,6 +20,7 @@ const StackedCircularFooterDemo = dynamic(() => import("@/components/ui/stacked-
 
 import { FOCUS_RAIL_ITEMS } from "@/data/portfolio";
 import { DavidHero } from "@/components/david-hero";
+import { SpiralEnter } from "@/components/ui/spiral-enter";
 
 export default function Home() {
   return (
@@ -29,15 +30,14 @@ export default function Home() {
         {/* New David Hckh Inspired Hero Section */}
         <DavidHero />
 
-        {/* Profile Insight - Light Section */}
-        <section id="about" className="w-full bg-[#f5f5f7] text-[#1d1d1f] py-24 md:py-32 flex flex-col items-center px-4 md:px-6">
-          <div className="w-full max-w-[980px]">
-            <GlassmorphismPortfolioBlock />
-          </div>
+        {/* Spiral Enter Section (Links to /about) */}
+        <section className="w-full px-4 md:px-6">
+          <SpiralEnter />
         </section>
 
-        {/* Flagship Product Showcase - High Performance Replacement */}
-        <FlagshipProjectSection />
+
+        {/* Orbital Timeline - High Performance Interactive Replacement */}
+        <RadialOrbitalTimeline timelineData={TIMELINE_DATA} />
 
         {/* Interactive Gallery - Dark Section */}
         <section id="projects" className="w-full bg-black text-white py-24 md:py-32 flex flex-col items-center px-4 md:px-6">

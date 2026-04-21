@@ -25,7 +25,7 @@ export default function GlassNavbar({
           {navItems.map((item) => (
             <a 
               key={item} 
-              href={`#${item.toLowerCase()}`} 
+              href={item === "About" ? "/about" : `#${item.toLowerCase()}`} 
               className="text-[12px] text-white/80 hover:text-white transition-colors font-normal tracking-tight"
             >
               {item}
@@ -53,7 +53,7 @@ export default function GlassNavbar({
               {navItems.map((item) => (
                 <a 
                   key={item} 
-                  href={`#${item.toLowerCase()}`}
+                  href={item === "About" ? "/about" : `#${item.toLowerCase()}`}
                   onClick={() => setIsOpen(false)}
                   className="w-full py-4 text-[24px] font-semibold text-white/90 border-b border-white/10"
                 >
