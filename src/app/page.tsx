@@ -18,48 +18,17 @@ const StackedCircularFooterDemo = dynamic(() => import("@/components/ui/stacked-
   ssr: false
 });
 
-import type { FocusRailItem } from "@/components/ui/focus-rail";
-
-const FOCUS_RAIL_ITEMS: FocusRailItem[] = [
-  {
-    id: 1,
-    title: "SCOPE Platform",
-    description: "Architected a MERN-based LMS platform with Razorpay and secure JWT auth for 1,000+ users.",
-    meta: "Full Stack • Fintech",
-    imageSrc: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200",
-    href: "#scope",
-  },
-  {
-    id: 2,
-    title: "ChatX AI Suite",
-    description: "Developed a real-time AI chat ecosystem with three custom OpenAI-powered bot personalities.",
-    meta: "AI • Real-time",
-    imageSrc: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200",
-    href: "#chatx",
-  },
-  {
-    id: 3,
-    title: "REFLECTO Dashboard",
-    description: "Engineered high-performance enterprise feedback systems with 3D visualizations and Docker.",
-    meta: "Systems • 3D",
-    imageSrc: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200",
-    href: "#reflecto",
-  },
-  {
-    id: 4,
-    title: "LV Prasad Eye Inst.",
-    description: "Optimized patient UI and built health recommendation systems improving efficiency by 30%.",
-    meta: "Health • Internship",
-    imageSrc: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200",
-    href: "#lvp",
-  },
-];
+import { FOCUS_RAIL_ITEMS } from "@/data/portfolio";
+import { DavidHero } from "@/components/david-hero";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-[#f5f5f7] dark:bg-black overflow-x-hidden">
-      <main className="flex flex-1 flex-col items-center justify-start w-full p-0 pt-20">
+      <main className="flex flex-1 flex-col items-center justify-start w-full p-0">
         
+        {/* New David Hckh Inspired Hero Section */}
+        <DavidHero />
+
         {/* Profile Insight - Light Section */}
         <section id="about" className="w-full bg-[#f5f5f7] text-[#1d1d1f] py-24 md:py-32 flex flex-col items-center px-4 md:px-6">
           <div className="w-full max-w-[980px]">
@@ -100,7 +69,7 @@ export default function Home() {
 
         <footer className="w-full py-12 bg-[#f5f5f7] border-t border-black/5 text-center px-6">
           <p className="text-[12px] text-[#86868b] font-normal tracking-tight">
-            Ansh Adarsh &copy; 2026 • Optimized for speed and precision.
+            ASSolution &copy; 2026 • Optimized for speed and precision.
           </p>
         </footer>
       </main>

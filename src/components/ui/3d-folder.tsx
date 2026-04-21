@@ -536,93 +536,7 @@ const AnimatedFolder: React.FC<AnimatedFolderProps> = ({ title, projects, classN
   );
 };
 
-// --- Portfolio Data based on Ansh's CV ---
-const portfolioData = [
-  {
-    title: "SCOPE Platform",
-    gradient: "linear-gradient(135deg, #0ea5e9, #0284c7)",
-    icon: HardDrive,
-    projects: [
-      { 
-        id: "scope-1", 
-        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop", 
-        title: "LMS Interface",
-        description: "MERN-based LMS platform supporting 1,000+ users with secure course delivery.",
-        tech: ["MongoDB", "Express", "React", "Node.js"]
-      },
-      { 
-        id: "scope-2", 
-        image: "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=1200&auto=format&fit=crop", 
-        title: "Razorpay Gateway",
-        description: "Integrated secure payment pipelines for streamlined course transactions.",
-        tech: ["Razorpay API", "JWT", "OTP Auth"]
-      },
-      { 
-        id: "scope-3", 
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop", 
-        title: "Analytics Engine",
-        description: "Improved efficiency via automated inventory tracking and real-time stock updates.",
-        tech: ["Recharts", "SCSS", "Context API"]
-      },
-    ] as Project[],
-  },
-  {
-    title: "ChatX AI Suite",
-    gradient: "linear-gradient(135deg, #8b5cf6, #7c3aed)",
-    icon: Cpu,
-    projects: [
-      { 
-        id: "chat-1", 
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop", 
-        title: "AI Messaging",
-        description: "Full-stack chat app with real-time messaging and media sharing for 500+ users.",
-        tech: ["Node.js", "MongoDB", "CometChat"]
-      },
-      { 
-        id: "chat-2", 
-        image: "https://images.unsplash.com/photo-1620712943543-bcc4638d9980?q=80&w=1200&auto=format&fit=crop", 
-        title: "OpenAI Bots",
-        description: "Three OpenAI-powered bots integrated for intelligent automated responses.",
-        tech: ["OpenAI API", "Redux", "Shadcn UI"]
-      },
-      { 
-        id: "chat-3", 
-        image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=1200&auto=format&fit=crop", 
-        title: "Dockerized Scale",
-        description: "Services deployed with Docker for zero-downtime, reducing latency by 30%.",
-        tech: ["Docker", "JWT Auth", "Scalability"]
-      },
-    ] as Project[],
-  },
-  {
-    title: "REFLECTO Systems",
-    gradient: "linear-gradient(135deg, #10b981, #059669)",
-    icon: Layers,
-    projects: [
-      { 
-        id: "ref-1", 
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop", 
-        title: "Feedback Engine",
-        description: "Role-based system with sentiment tagging and structured evaluation workflows.",
-        tech: ["FastAPI", "PostgreSQL", "SQLAlchemy"]
-      },
-      { 
-        id: "ref-2", 
-        image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=1200&auto=format&fit=crop", 
-        title: "Interactive Viz",
-        description: "Dashboards for manager insights and anonymous employee feedback timelines.",
-        tech: ["Three.js", "Vue.js", "TypeScript"]
-      },
-      { 
-        id: "ref-3", 
-        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=1200&auto=format&fit=crop", 
-        title: "Backend Core",
-        description: "Containerized backend with ORM for multi-database compatibility.",
-        tech: ["Docker", "Node.js", "ORM Integration"]
-      },
-    ] as Project[],
-  },
-];
+import { PORTFOLIO_FOLDERS } from "@/data/portfolio";
 
 export function PortfolioFolderSection() {
   return (
@@ -641,7 +555,7 @@ export function PortfolioFolderSection() {
         
         {/* Grid - Centered items with responsive sizing */}
         <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16 lg:gap-24">
-          {portfolioData.map((folder, index) => (
+          {PORTFOLIO_FOLDERS.map((folder, index) => (
             <div
               key={folder.title}
               className="animate-in fade-in slide-in-from-bottom-12 duration-1000"
@@ -649,7 +563,7 @@ export function PortfolioFolderSection() {
             >
               <AnimatedFolder
                 title={folder.title}
-                projects={folder.projects}
+                projects={folder.projects as Project[]}
                 gradient={folder.gradient}
                 icon={folder.icon}
                 className="mx-auto"

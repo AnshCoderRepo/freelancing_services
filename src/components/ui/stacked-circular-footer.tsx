@@ -1,8 +1,4 @@
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
+import { Instagram, Linkedin, Twitter } from "lucide-react"
 
 function StackedCircularFooter() {
   return (
@@ -31,7 +27,7 @@ function StackedCircularFooter() {
 
           <div className="text-center pt-8 border-t border-white/5 w-full">
             <p className="text-[12px] text-[#424245] tracking-tight">
-              Copyright &copy; 2026 Ansh Adarsh. All rights reserved. Precise engineering for the modern web.
+              Copyright &copy; 2026 ASSolution. All rights reserved. Precise engineering for the modern web.
             </p>
           </div>
         </div>
