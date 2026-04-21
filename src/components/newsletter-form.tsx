@@ -45,9 +45,9 @@ export function OptimisticNewsletter() {
         </div>
         
         <div className="space-y-2">
-          <h3 className="text-2xl font-bold tracking-tight">Stay Updated</h3>
-          <p className="text-muted-foreground">
-            Subscribe to my newsletter for insights on full-stack architecture and frontend fluidity.
+          <h3 className="text-[28px] md:text-[34px] apple-display tracking-tighter">Stay updated.</h3>
+          <p className="text-[#86868b] text-[17px] font-normal leading-relaxed">
+            Subscribe for insights on engineering and design.
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export function OptimisticNewsletter() {
               key="success"
               initial={{ opacity: 0, scale: 0.9, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              className="flex items-center gap-2 text-primary font-medium bg-primary/10 px-6 py-3 rounded-full"
+              className="flex items-center gap-2 text-apple-blue font-medium bg-apple-blue/10 px-6 py-3 rounded-full"
             >
               <CheckCircle className="h-5 w-5" />
               Directly into your inbox!
@@ -73,12 +73,12 @@ export function OptimisticNewsletter() {
                 <Input
                   name="email"
                   type="email"
-                  placeholder="name@example.com"
+                  placeholder="Email"
                   required
-                  className="h-12 rounded-full border-border/50 bg-background/80 px-6 focus-visible:ring-primary/20"
+                  className="h-12 rounded-full border-[#d2d2d7] bg-white px-6 focus-visible:ring-apple-blue/20"
                 />
               </div>
-              <Button type="submit" size="lg" className="h-12 rounded-full px-8 font-semibold transition-all active:scale-95">
+              <Button type="submit" size="lg" className="h-12 apple-pill-button bg-near-black hover:bg-black text-white px-8 font-normal transition-all active:scale-95 shadow-none border-none">
                 {isPending ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
@@ -88,6 +88,7 @@ export function OptimisticNewsletter() {
             </motion.form>
           )}
         </AnimatePresence>
+
         
         <p className="text-[10px] text-muted-foreground uppercase tracking-widest">
           No spam, ever. Unsubscribe anytime.

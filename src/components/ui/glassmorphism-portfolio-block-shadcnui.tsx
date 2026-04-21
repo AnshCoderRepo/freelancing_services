@@ -1,11 +1,8 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { motion, Variants } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
-  ArrowUpRight,
   Github,
   Linkedin,
   Mail,
@@ -14,6 +11,7 @@ import {
   Briefcase,
   Code2,
   Award,
+  ChevronRight,
 } from "lucide-react";
 
 type SocialLink = {
@@ -29,296 +27,85 @@ type Highlight = {
   description: string;
 };
 
-const highlights: Highlight[] = [
-  {
-    icon: Briefcase,
-    title: "Current Role",
-    description:
-      "Software Engineer at EUROASIANN — leading the Web Tech Team to build full-stack portfolio platforms with Next.js, ShadcnUI, and modular components.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Education",
-    description:
-      "B.Tech from Lloyd Institute of Engineering & Technology (GPA: 8.25 / 10.00) · Graduated May 2025 · Greater Noida, UP",
-  },
-  {
-    icon: Code2,
-    title: "Tech Stack",
-    description:
-      "Java · JavaScript · Python · C++ · TypeScript · React · Next.js · Node.js · Express.js · MongoDB · PostgreSQL · Docker · Vue.js · REST APIs",
-  },
-  {
-    icon: Award,
-    title: "Certifications",
-    description:
-      "Full Stack Development — LIET  ·  Java Development — LIET",
-  },
-];
+import { HIGHLIGHTS, SOCIAL_LINKS, BRANDING } from "@/data/branding";
 
-const socialLinks: SocialLink[] = [
-  {
-    label: "LinkedIn",
-    handle: "Ansh-Adarsh",
-    href: "https://linkedin.com/in/Ansh-Adarsh",
-    icon: Linkedin,
-  },
-  {
-    label: "GitHub",
-    handle: "AnshCoderRepo",
-    href: "https://github.com/AnshCoderRepo",
-    icon: Github,
-  },
-  {
-    label: "Email",
-    handle: "anshk1126@gmail.com",
-    href: "mailto:anshk1126@gmail.com",
-    icon: Mail,
-  },
-  {
-    label: "Phone",
-    handle: "+91-7070410031",
-    href: "tel:+917070410031",
-    icon: Phone,
-  },
-];
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 120,
-      damping: 14,
-    },
-  },
-};
 
 export function GlassmorphismPortfolioBlock() {
   return (
-    <section className="relative min-h-screen overflow-hidden px-6 py-24 lg:py-32">
-      <div className="mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-3xl border border-border/50 bg-background/45 p-8 backdrop-blur-2xl md:p-12"
-        >
-          {/* Glass gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-foreground/[0.05] via-transparent to-transparent pointer-events-none" />
+    <div className="w-full flex flex-col items-center">
+      <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
+        {/* Left Column: Copy */}
+        <div className="space-y-12">
+           <div className="space-y-6">
+             <h2 className="text-[40px] md:text-[56px] apple-display text-[#1d1d1f] tracking-tighter leading-[1.07]">
+               <span>{BRANDING.name}.</span><br/>
+               <span className="text-[#86868b]">{BRANDING.role}.</span>
+             </h2>
+             <p className="text-[17px] md:text-[19px] text-[#1d1d1f] leading-[1.47] font-normal max-w-lg">
+               {BRANDING.bio}
+             </p>
+           </div>
 
-          <div className="relative grid gap-12 lg:grid-cols-2">
-            {/* Left column - Main content */}
-            <div className="space-y-8">
-              <Badge
-                variant="outline"
-                className="inline-flex items-center gap-2 rounded-full border-border/50 bg-background/55 px-4 py-1.5 text-xs uppercase tracking-[0.3em] text-foreground/70 backdrop-blur transition-colors hover:bg-background/70"
-              >
-                Portfolio Insight
-              </Badge>
-
-              <div className="space-y-4">
-                <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl"
-                >
-                  Ansh Adarsh, Full-Stack Software Engineer
-                </motion.h2>
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="max-w-xl text-base leading-relaxed text-foreground/70 md:text-md"
-                >
-                  Full-stack engineer passionate about architecting scalable platforms and
-                  crafting exceptional user experiences. Currently leading Web Tech at
-                  EUROASIANN — building with Next.js, ShadcnUI, and end-to-end development
-                  workflows that deliver quality at pace.
-                </motion.p>
-              </div>
-
-              {/* Highlights grid */}
-              <motion.div 
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-                className="grid gap-4 sm:grid-cols-1"
-              >
-                {highlights.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <motion.div 
-                      key={item.title} 
-                      variants={itemVariants}
-                      whileHover={{ y: -4, scale: 1.01 }}
-                      className="group relative overflow-hidden rounded-2xl border border-border/40 bg-background/60 p-5 backdrop-blur transition-all hover:border-border/60 hover:shadow-lg"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-br from-foreground/[0.04] via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 -z-10" />
-                      <div className="relative space-y-2">
-                         <div className="flex items-center gap-2">
-                           <Icon className="h-4 w-4 text-foreground/50 transition-colors group-hover:text-primary" />
-                           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-foreground/40 group-hover:text-foreground/60 transition-colors">
-                             {item.title}
-                           </p>
-                         </div>
-                         <p className="text-sm leading-relaxed text-foreground/70">
-                           {item.description}
-                         </p>
-                       </div>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
-
-              {/* CTA Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-wrap gap-4"
-              >
-                <Button
-                  size="lg"
-                  onClick={() =>
-                    window.open("https://github.com/AnshCoderRepo", "_blank")
-                  }
-                  className="h-12 gap-2 rounded-full px-8 text-sm uppercase tracking-[0.25em] transition-all hover:shadow-lg"
-                >
-                  View GitHub
-                  <ArrowUpRight className="h-4 w-4" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={() =>
-                    window.open("https://linkedin.com/in/Ansh-Adarsh", "_blank")
-                  }
-                  className="h-12 gap-2 rounded-full px-8 text-sm uppercase tracking-[0.25em] transition-all hover:shadow-lg"
-                >
-                  LinkedIn
-                  <Linkedin className="h-4 w-4" />
-                </Button>
-              </motion.div>
-            </div>
-
-            {/* Right column - Profile card */}
-            <div className="relative">
-              <div className="absolute inset-0 rounded-[32px] bg-gradient-to-b from-primary/15 via-transparent to-transparent blur-3xl" />
-              <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-[28px] border border-border/50 bg-background/60 p-8 backdrop-blur-xl">
-                <div className="flex flex-col items-center text-center">
-                  {/* Avatar with glow */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="relative mb-6"
-                  >
-                    <div className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-2xl" />
-                    {/* Initials avatar */}
-                    <div className="relative h-32 w-32 rounded-full border border-border/40 shadow-[0_25px_60px_rgba(15,23,42,0.3)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.6)] bg-gradient-to-br from-violet-500 via-purple-600 to-indigo-700 flex items-center justify-center">
-                      <span className="text-4xl font-bold text-white tracking-tight select-none">
-                        AA
-                      </span>
+           <div className="grid sm:grid-cols-2 gap-8">
+             {HIGHLIGHTS.map((item) => {
+               const Icon = item.icon;
+               return (
+                 <div key={item.title} className="space-y-3">
+                    <div className="flex items-center gap-2">
+                       <Icon className="h-5 w-5 text-[#86868b]" />
+                       <span className="text-[14px] font-semibold uppercase tracking-widest text-[#86868b]">{item.title}</span>
                     </div>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="space-y-1"
-                  >
-                    <h3 className="text-2xl font-semibold tracking-tight text-foreground">
-                      Ansh Adarsh
-                    </h3>
-                    <p className="text-xs font-semibold uppercase tracking-[0.35em] text-foreground/45">
-                      Software Engineer · Full-Stack Developer
+                    <p className="text-[14px] text-[#1d1d1f] font-normal leading-relaxed opacity-80">
+                      {item.description}
                     </p>
-                  </motion.div>
+                 </div>
+               );
+             })}
+           </div>
 
-                  <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    className="mt-4 max-w-sm text-sm leading-relaxed text-foreground/70"
-                  >
-                    Building scalable full-stack applications with Next.js, React, Node.js,
-                    and modern cloud-ready stacks. Open to impactful collaborations and
-                    freelance projects.
-                  </motion.p>
-                </div>
+           <div className="flex flex-wrap gap-6 items-center pt-4">
+              <Button className="apple-pill-button bg-apple-blue hover:bg-[#0077ed] text-white text-[17px] h-auto py-3 px-8 font-normal shadow-none">
+                Get in touch
+              </Button>
+              <a href="#" className="flex items-center gap-1 text-apple-blue hover:underline text-[17px] font-normal">
+                View curriculum vitae <ChevronRight size={18} />
+              </a>
+           </div>
+        </div>
 
-                {/* Social links */}
-                <motion.div
-                  variants={containerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-80px" }}
-                  className="mt-8 flex flex-col gap-3"
-                >
-                  {socialLinks.map((social) => {
-                    const Icon = social.icon;
-                    return (
-                      <motion.a
-                        key={social.label}
-                        variants={itemVariants}
-                        href={social.href}
-                        target={social.href.startsWith("http") ? "_blank" : undefined}
-                        rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="group flex items-center justify-between rounded-2xl border border-border/40 bg-background/70 px-4 py-3 text-left transition-all hover:border-border/60 hover:bg-background/80 hover:shadow-md"
-                        whileHover={{ 
-                          scale: 1.02, 
-                          x: 4,
-                          transition: { type: "spring", stiffness: 400, damping: 10 } 
-                        }}
-                        whileTap={{ scale: 0.97 }}
-                      >
-                        <div className="flex items-center gap-3">
-                          <span className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/70 text-foreground/80 shadow-[0_10px_30px_rgba(15,23,42,0.2)] transition-all group-hover:shadow-[0_10px_30px_rgba(15,23,42,0.3)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.4)] dark:group-hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                            <Icon className="h-4 w-4" />
-                          </span>
-                          <div>
-                            <p className="text-sm font-semibold text-foreground">
-                              {social.label}
-                            </p>
-                            <p className="text-xs text-foreground/60">
-                              {social.handle}
-                            </p>
-                          </div>
-                        </div>
-                        <ArrowUpRight className="h-4 w-4 text-foreground/40 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground/70" />
-                      </motion.a>
-                    );
-                  })}
-                </motion.div>
+        {/* Right Column: Visual Component */}
+        <div className="relative">
+           {/* Sculpture-like Profile Card */}
+           <div className="relative aspect-[4/5] w-full max-w-[400px] mx-auto bg-white rounded-[24px] shadow-[rgba(0,0,0,0.1)_0px_20px_50px] overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#f5f5f7] to-white" />
+              
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-10 text-center space-y-8">
+                 {/* Avatar */}
+                 <div className="w-32 h-32 rounded-full bg-gradient-to-br from-violet-500 via-purple-600 to-indigo-700 flex items-center justify-center shadow-inner">
+                    <span className="text-4xl font-bold text-white tracking-widest">AS</span>
+                 </div>
+                 
+                 <div className="space-y-2">
+                    <h3 className="text-[24px] font-semibold text-[#1d1d1f]">{BRANDING.name}</h3>
+                    <p className="text-[14px] font-medium text-[#86868b] uppercase tracking-[0.2em]">Full-Stack Developer</p>
+                 </div>
+
+                 {/* Social links as small icons */}
+                 <div className="flex gap-6">
+                    {SOCIAL_LINKS.map((social) => {
+                      const SocialIcon = social.icon;
+                      return (
+                        <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" className="text-[#86868b] hover:text-apple-blue transition-colors">
+                           <SocialIcon size={20} />
+                        </a>
+                      );
+                    })}
+                 </div>
               </div>
-            </div>
-          </div>
-        </motion.div>
+           </div>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
+

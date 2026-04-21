@@ -2,125 +2,69 @@
 import React, { useState } from "react"
 import { SignInButton, SignUpButton, Show, UserButton } from "@clerk/nextjs";
 import Image from "next/image"
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingBag, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function GlassNavbar({ 
-  logoSrc = "/only_text.png", 
-  navItems = ["Home", "About", "Blogs"], 
-  showLogo = true 
+  navItems = ["Home", "About", "Projects", "Blogs"], 
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div 
-      className="relative w-full h-24 md:h-32 flex items-center justify-center p-4 md:p-8 overflow-hidden bg-transparent pointer-events-none"
-    > 
-      <nav className="relative w-full max-w-6xl h-14 bg-white/70 dark:bg-black/40 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-full flex items-center justify-between px-6 md:px-8 shadow-xl z-50 pointer-events-auto">
-        {/* Logo Section */}
-        <div className="flex items-center gap-3">
-          {showLogo && (
-            <div className="flex items-center justify-center transition-transform duration-300 hover:scale-105 cursor-pointer">
-              <Image 
-                src={logoSrc} 
-                alt="Logo" 
-                width={120} 
-                height={40} 
-                className="h-6 md:h-8 w-auto object-contain dark:invert-[0.1]" 
-              />
-            </div>
-          )}
-        </div>
-        
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-6 lg:gap-8">
-          <div className="flex items-center gap-2 lg:gap-4">
-            {navItems.map((item, index) => (
-              <a 
-                key={index}
-                href={`#${item.toLowerCase()}`} 
-                className="text-zinc-600 dark:text-zinc-300 font-medium text-sm px-4 py-2 rounded-full 
-                transition-all duration-300 relative overflow-hidden
-              hover:bg-zinc-100 dark:hover:bg-white/10 hover:-translate-y-0.5 hover:text-zinc-900 dark:hover:text-white"
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-          
-          <div className="flex items-center gap-4 border-l border-zinc-200 dark:border-white/20 pl-6 ml-2">
-            <Show when="signed-out">
-              <SignInButton mode="modal">
-                <button className="text-zinc-600 dark:text-zinc-300 text-xs lg:text-sm font-medium hover:text-zinc-900 dark:hover:text-white transition-colors">
-                  Login
-                </button>
-              </SignInButton>
-              <SignUpButton mode="modal">
-                <button className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-4 py-2 rounded-full text-xs lg:text-sm font-semibold hover:bg-zinc-800 dark:hover:bg-white/90 transition-all active:scale-95 shadow-lg shadow-zinc-200 dark:shadow-none">
-                  Sign Up
-                </button>
-              </SignUpButton>
-            </Show>
-            <Show when="signed-in">
-              <UserButton afterSignOutUrl="/" />
-            </Show>
-          </div>
+    <nav className="fixed top-0 left-0 right-0 z-[100] h-12 bg-black/80 backdrop-blur-[20px] saturate-[180%] border-b border-white/10 flex items-center justify-center px-4 md:px-6">
+      <div className="w-full max-w-[980px] flex items-center justify-between">
+        {/* Logo */}
+        <a href="/" className="opacity-80 hover:opacity-100 transition-opacity">
+           <svg viewBox="0 0 17 48" className="h-10 w-4 fill-white">
+             <path d="M15.073 28.51c-.624.912-1.396 1.83-2.316 2.753-1.468 1.48-2.618 2.37-3.9 2.37-.423 0-.915-.123-1.48-.372-.563-.247-1.127-.373-1.685-.373-.557 0-1.12.126-1.68.373-.565.249-1.07.382-1.517.398-1.248.046-2.485-.89-3.715-2.808C.198 28.694-.52 25.106-.52 21.6c0-2.433.486-4.444 1.458-6.035.794-1.3 1.914-2.112 3.36-2.112.443 0 .973.125 1.588.374.616.248 1.134.372 1.556.372.392 0 .895-.12 1.51-.36.618-.24 1.138-.36 1.558-.36 1.343 0 2.454.76 3.333 1.88-1.465.882-2.198 2.215-2.198 3.997 0 1.518.57 2.784 1.71 3.798.54.484 1.144.823 1.808 1.018-.158.463-.352.93-.58 1.41zM11.693 8.1c0 1.258-.453 2.463-1.36 3.616-1.137 1.452-2.397 2.246-3.714 2.246-.11 0-.276-.015-.494-.047.07-2.324 1.075-4.42 2.518-5.632.744-.622 1.637-1.036 2.68-1.242.062.333.1.728.1 1.059z"></path>
+           </svg>
+        </a>
+
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-8">
+          {navItems.map((item) => (
+            <a 
+              key={item} 
+              href={item === "About" ? "/about" : `#${item.toLowerCase()}`} 
+              className="text-[12px] text-white/80 hover:text-white transition-colors font-normal tracking-tight"
+            >
+              {item}
+            </a>
+          ))}
+          <button className="text-white/80 hover:text-white transition-colors"><Search size={14} /></button>
+          <button className="text-white/80 hover:text-white transition-colors"><ShoppingBag size={14} /></button>
         </div>
 
-        {/* Mobile Actions */}
-        <div className="flex md:hidden items-center gap-3">
-           <Show when="signed-in">
-              <UserButton afterSignOutUrl="/" />
-            </Show>
-          <button 
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-zinc-600 dark:text-zinc-300 p-2 bg-zinc-100 dark:bg-white/10 rounded-full border border-zinc-200 dark:border-white/10 active:scale-95 transition-all"
-          >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </nav>
+        {/* Mobile Toggle */}
+        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white/80">
+          {isOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
+      </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="absolute top-24 left-4 right-4 z-40 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-2xl border border-zinc-200 dark:border-white/10 rounded-3xl p-6 flex flex-col gap-6 md:hidden shadow-2xl"
-          >
-            <div className="flex flex-col gap-2">
-              {navItems.map((item, index) => (
+           <motion.div
+             initial={{ opacity: 0, y: -20 }}
+             animate={{ opacity: 1, y: 0 }}
+             exit={{ opacity: 0, y: -20 }}
+             className="fixed inset-0 top-12 bg-black z-[99] flex flex-col items-center pt-8 px-10"
+           >
+              {navItems.map((item) => (
                 <a 
-                  key={index}
-                  href={`#${item.toLowerCase()}`} 
+                  key={item} 
+                  href={item === "About" ? "/about" : `#${item.toLowerCase()}`}
                   onClick={() => setIsOpen(false)}
-                  className="text-zinc-700 dark:text-zinc-200 font-medium text-lg p-4 rounded-2xl hover:bg-zinc-50 dark:hover:bg-white/5 transition-colors border border-transparent hover:border-zinc-100 dark:hover:border-white/10"
+                  className="w-full py-4 text-[24px] font-semibold text-white/90 border-b border-white/10"
                 >
                   {item}
                 </a>
               ))}
-            </div>
-            
-            <Show when="signed-out">
-              <div className="flex flex-col gap-3 pt-4 border-t border-zinc-100 dark:border-white/10">
-                <SignInButton mode="modal">
-                  <button className="w-full text-zinc-600 dark:text-zinc-300 text-base font-medium py-3 rounded-2xl border border-zinc-200 dark:border-white/10 hover:bg-zinc-50 dark:hover:bg-white/5 transition-colors">
-                    Login
-                  </button>
-                </SignInButton>
-                <SignUpButton mode="modal">
-                  <button className="w-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 py-4 rounded-2xl text-base font-bold hover:bg-zinc-800 dark:hover:bg-white/90 active:scale-95 transition-all shadow-xl shadow-zinc-200 dark:shadow-none">
-                    Sign Up
-                  </button>
-                </SignUpButton>
-              </div>
-            </Show>
-          </motion.div>
+           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </nav>
   )
 }
+
 
