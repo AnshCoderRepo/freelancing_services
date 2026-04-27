@@ -21,6 +21,8 @@ const StackedCircularFooterDemo = dynamic(() => import("@/components/ui/stacked-
 import { FOCUS_RAIL_ITEMS } from "@/data/portfolio";
 import { DavidHero } from "@/components/david-hero";
 import { SpiralEnter } from "@/components/ui/spiral-enter";
+import { RadarSection } from "@/components/radar-section";
+import { BucketSection } from "@/components/bucket-section";
 
 export default function Home() {
   return (
@@ -58,6 +60,12 @@ export default function Home() {
 
         {/* Service Deep Dive - Interactive Folder Showcase Restored */}
         <PortfolioFolderSection />
+
+        {/* Radar Effect Section - Full Spectrum Capabilities */}
+        <RadarSection />
+
+        {/* Bucket Feature Section - Engineering Excellence */}
+        <BucketSection />
 
 
         {/* Newsletter - Light Tone */}

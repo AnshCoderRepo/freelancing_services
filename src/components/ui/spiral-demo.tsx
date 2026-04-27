@@ -29,11 +29,13 @@ const SpiralDemo = ({ skipEnter = false }: { skipEnter?: boolean }) => {
   }
   
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black text-white font-sans">
-      {/* 1. Background Animation (The hypnotic spiral) */}
-      <div className={`absolute inset-0 transition-opacity duration-1000 ${isEntered ? 'opacity-40' : 'opacity-100'}`}>
-        <SpiralAnimation />
-      </div>
+    <div className={`relative w-full ${isEntered ? 'min-h-screen' : 'h-screen overflow-hidden'} bg-black text-white font-sans`}>
+      {/* 1. Background Animation (The hypnotic spiral) - Only shown before entering */}
+      {!isEntered && (
+        <div className="absolute inset-0 transition-opacity duration-1000 opacity-100">
+          <SpiralAnimation />
+        </div>
+      )}
 
       {/* 2. Landing State: The "Enter" Overlay */}
       {!isEntered && (
@@ -61,8 +63,8 @@ const SpiralDemo = ({ skipEnter = false }: { skipEnter?: boolean }) => {
       {/* 3. Main Content: The "Discovery" Page (Visible after Enter) */}
       {isEntered && (
         <div className={`
-          relative z-10 w-full h-full overflow-y-auto overflow-x-hidden scrollbar-hide
-          transition-all duration-[1500ms] ease-out flex flex-col items-center
+          relative z-10 w-full flex flex-col items-center
+          transition-all duration-[1500ms] ease-out
           ${contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}
         `}>
           
@@ -149,7 +151,7 @@ const SpiralDemo = ({ skipEnter = false }: { skipEnter?: boolean }) => {
       )}
 
       {/* 4. Navigation Icons (Top Right) */}
-      <nav className="absolute top-8 right-8 z-50 flex gap-6">
+      <nav className="fixed top-8 right-8 z-50 flex gap-6">
         <button className="text-white/40 hover:text-white transition-colors" title="Projects">
           <Github size={22} />
         </button>
