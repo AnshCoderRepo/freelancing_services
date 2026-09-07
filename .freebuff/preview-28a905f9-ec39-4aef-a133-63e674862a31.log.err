@@ -1,0 +1,28 @@
+⨯ ./src/components/david-hero.tsx:154:24
+Parsing ecmascript source code failed
+[0m [90m 152 |[39m               [33mASSolution[39m
+ [90m 153 |[39m             [33m<[39m[33m/[39m[33mmotion[39m[33m.[39mh1[33m>[39m
+[31m[1m>[22m[39m[90m 154 |[39m           [33m<[39m[33m/[39m[33mmotion[39m[33m.[39mdiv[33m>[39m
+ [90m     |[39m                        [31m[1m^[22m[39m
+[31m[1m>[22m[39m[90m 155 |[39m
+ [90m     |[39m [31m[1m^[22m[39m
+[31m[1m>[22m[39m[90m 156 |[39m           {[90m/* Subtext */[39m}
+ [90m     |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 157 |[39m           [33m<[39m[33mmotion[39m[33m.[39mp
+ [90m 158 |[39m             initial[33m=[39m{{ opacity[33m:[39m [35m0[39m[33m,[39m y[33m:[39m [35m20[39m }}
+ [90m 159 |[39m             animate[33m=[39m{{ opacity[33m:[39m [35m1[39m[33m,[39m y[33m:[39m [35m0[39m }}[0m
+
+Expected '</', got 'jsx text'
+
+Import traces:
+  Client Component Browser:
+    ./src/components/david-hero.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/david-hero.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+

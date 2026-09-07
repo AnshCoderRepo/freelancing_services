@@ -172,6 +172,14 @@ html.lenis body {
     color: var(--color-text-400);
 }
 
+.hero-title-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 35%, #93c5fd 65%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.15));
+}
+
 .banner {
     width: fit-content;
     padding: 0.5rem 1rem;

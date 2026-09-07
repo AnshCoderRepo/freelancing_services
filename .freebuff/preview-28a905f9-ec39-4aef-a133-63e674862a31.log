@@ -1,0 +1,37 @@
+
+> freelancing_services@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:52908
+- Network:       http://192.168.137.1:52908
+- Environments: .env
+
+✓ Starting...
+✓ Ready in 2.1s
+○ Compiling / ...
+ GET / 200 in 12.6s (compile: 10.5s, proxy.ts: 1331ms, render: 717ms)
+ GET / 200 in 175ms (compile: 20ms, proxy.ts: 30ms, render: 125ms)
+ GET / 200 in 214ms (compile: 8ms, proxy.ts: 69ms, render: 137ms)
+ GET /about 200 in 2.2s (compile: 2.1s, proxy.ts: 52ms, render: 54ms)
+ GET / 200 in 163ms (compile: 7ms, proxy.ts: 16ms, render: 140ms)
+ GET / 200 in 259ms (compile: 11ms, proxy.ts: 30ms, render: 219ms)
+✓ Compiled in 273ms
+✓ Compiled in 213ms
+✓ Compiled in 188ms
+✓ Compiled in 217ms
+✓ Compiled in 83ms
+✓ Compiled in 101ms
+ GET / 200 in 775ms (compile: 261ms, proxy.ts: 25ms, render: 489ms)
+✓ Compiled in 241ms
+✓ Compiled in 322ms
+ GET / 500 in 4.8s (compile: 4.6s, proxy.ts: 31ms, render: 220ms)
+ GET / 200 in 460ms (compile: 121ms, proxy.ts: 8ms, render: 331ms)
+✓ Compiled in 135ms
+✓ Compiled in 121ms
+✓ Compiled in 405ms
+ GET / 200 in 1436ms (compile: 412ms, proxy.ts: 55ms, render: 969ms)
+✓ Compiled in 199ms
+ GET / 200 in 342ms (compile: 13ms, proxy.ts: 20ms, render: 310ms)
+ GET / 200 in 304ms (compile: 11ms, proxy.ts: 15ms, render: 277ms)
+[?25h

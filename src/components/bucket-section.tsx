@@ -4,7 +4,7 @@ import Bucket from "@/components/ui/bucket";
 
 export function BucketSection() {
   return (
-    <section className="w-full bg-[#f5f5f7] dark:bg-black py-24 flex flex-col items-center px-4 md:px-6">
+    <section className="w-full bg-black py-24 flex flex-col items-center px-4 md:px-6">
       <div className="w-full max-w-[980px] text-center mb-16 px-6">
         <h2 className="text-[40px] md:text-[56px] apple-display mb-4 tracking-tighter">
           Engineered for <span className="text-apple-blue italic">Scale.</span>

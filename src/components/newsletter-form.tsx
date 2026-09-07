@@ -38,14 +38,14 @@ export function OptimisticNewsletter() {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-[2rem] border border-border/50 bg-background/50 p-8 backdrop-blur-xl md:p-12">
+    <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-xl md:p-12">
       <div className="relative z-10 flex flex-col items-center text-center max-w-xl mx-auto space-y-6">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-apple-blue/15 text-apple-blue">
           <Mail className="h-6 w-6" />
         </div>
         
         <div className="space-y-2">
-          <h3 className="text-[28px] md:text-[34px] apple-display tracking-tighter">Stay updated.</h3>
+          <h3 className="text-[28px] md:text-[34px] apple-display tracking-tighter text-white">Stay updated.</h3>
           <p className="text-[#86868b] text-[17px] font-normal leading-relaxed">
             Subscribe for insights on engineering and design.
           </p>
@@ -75,10 +75,10 @@ export function OptimisticNewsletter() {
                   type="email"
                   placeholder="Email"
                   required
-                  className="h-12 rounded-full border-[#d2d2d7] bg-white px-6 focus-visible:ring-apple-blue/20"
+                  className="h-12 rounded-full border-white/20 bg-white/10 text-white placeholder:text-white/40 px-6 focus-visible:ring-apple-blue/20"
                 />
               </div>
-              <Button type="submit" size="lg" className="h-12 apple-pill-button bg-near-black hover:bg-black text-white px-8 font-normal transition-all active:scale-95 shadow-none border-none">
+              <Button type="submit" size="lg" className="h-12 apple-pill-button bg-white text-black hover:bg-white/90 px-8 font-normal transition-all active:scale-95 shadow-none border-none">
                 {isPending ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
@@ -90,7 +90,7 @@ export function OptimisticNewsletter() {
         </AnimatePresence>
 
         
-        <p className="text-[10px] text-muted-foreground uppercase tracking-widest">
+        <p className="text-[10px] text-white/40 uppercase tracking-widest">
           No spam, ever. Unsubscribe anytime.
         </p>
       </div>
