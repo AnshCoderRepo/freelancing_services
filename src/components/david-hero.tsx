@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useMemo, useCallback, type MouseEvent } from "react";
+import { useMemo, useCallback, type MouseEvent, type ReactNode } from "react";
 
 const TECH_STACK = [
   "React",
@@ -88,7 +88,7 @@ function FloatingShapes({ mouseX, mouseY }: { mouseX: any; mouseY: any }) {
     </svg>
   );
 
-  const svgMap: Record<string, JSX.Element> = {
+  const svgMap: Record<string, ReactNode> = {
     cube: cubeSvg,
     octa: octaSvg,
     ring: ringSvg,
@@ -98,37 +98,54 @@ function FloatingShapes({ mouseX, mouseY }: { mouseX: any; mouseY: any }) {
 
   return (
     <div className="absolute inset-0 pointer-events-none hidden md:block">
-      {shapes.map((s, i) => {
-        const depthFactor = s.depth * 2;
-        return (
-          <motion.div
-            key={i}
-            style={{
-              left: s.x,
-              top: s.y,
-              width: s.size,
-              height: s.size,
-              x: useTransform(spx, (v) => v * depthFactor),
-              y: useTransform(spy, (v) => v * depthFactor),
-            }}
-            animate={{
-              rotateX: [0, 360],
-              rotateY: [0, 360],
-              y: [0, -20, 0],
-            }}
-            transition={{
-              rotateX: { duration: s.rotSpeed, repeat: Infinity, ease: "linear" },
-              rotateY: { duration: s.rotSpeed * 1.3, repeat: Infinity, ease: "linear" },
-              y: { duration: s.rotSpeed * 0.6, repeat: Infinity, ease: "easeInOut", delay: s.delay },
-            }}
-            className="absolute"
-            style={{ perspective: 800, transformStyle: "preserve-3d" }}
-          >
-            {svgMap[s.type]}
-          </motion.div>
-        );
-      })}
+      {shapes.map((s, i) => (
+        <FloatingShapeItem key={i} shape={s} spx={spx} spy={spy} svgMap={svgMap} />
+      ))}
     </div>
+  );
+}
+
+function FloatingShapeItem({
+  shape,
+  spx,
+  spy,
+  svgMap,
+}: {
+  shape: { type: string; x: string; y: string; size: number; rotSpeed: number; delay: number; depth: number };
+  spx: any;
+  spy: any;
+  svgMap: Record<string, ReactNode>;
+}) {
+  const depthFactor = shape.depth * 2;
+  const x = useTransform(spx, (v: number) => v * depthFactor);
+  const y = useTransform(spy, (v: number) => v * depthFactor);
+
+  return (
+    <motion.div
+      style={{
+        left: shape.x,
+        top: shape.y,
+        width: shape.size,
+        height: shape.size,
+        x,
+        y,
+        perspective: 800,
+        transformStyle: "preserve-3d",
+      }}
+      animate={{
+        rotateX: [0, 360],
+        rotateY: [0, 360],
+        y: [0, -20, 0],
+      }}
+      transition={{
+        rotateX: { duration: shape.rotSpeed, repeat: Infinity, ease: "linear" },
+        rotateY: { duration: shape.rotSpeed * 1.3, repeat: Infinity, ease: "linear" },
+        y: { duration: shape.rotSpeed * 0.6, repeat: Infinity, ease: "easeInOut", delay: shape.delay },
+      }}
+      className="absolute"
+    >
+      {svgMap[shape.type]}
+    </motion.div>
   );
 }
 
