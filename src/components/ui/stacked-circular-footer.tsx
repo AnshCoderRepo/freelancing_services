@@ -1,4 +1,4 @@
-import { Instagram, Linkedin, Twitter } from "lucide-react"
+import { Github, Linkedin, Mail } from "lucide-react";
 
 function StackedCircularFooter() {
   return (
@@ -12,29 +12,27 @@ function StackedCircularFooter() {
           </div>
           
           <nav className="mb-12 flex flex-wrap justify-center gap-x-10 gap-y-4">
-            <a href="#flagship" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">Home</a>
-            <a href="#about" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">The Story</a>
-            <a href="#projects" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">Selected Works</a>
-            <a href="#details" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">Architectural Deep-Dive</a>
-            <a href="#" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">Contact Engineer</a>
+            <a href="/" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">Home</a>
+            <a href="/about" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">About & Experience</a>
+            <a href="#projects" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">Projects</a>
+            <a href="mailto:anshk1126@gmail.com" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">Contact</a>
           </nav>
 
           <div className="mb-12 flex space-x-8">
-             <a href="#" className="text-[#86868b] hover:text-white transition-colors"><Twitter size={18} /></a>
-             <a href="#" className="text-[#86868b] hover:text-white transition-colors"><Linkedin size={18} /></a>
-             <a href="#" className="text-[#86868b] hover:text-white transition-colors"><Instagram size={18} /></a>
+             <a href="https://github.com/AnshCoderRepo" target="_blank" rel="noopener noreferrer" className="text-[#86868b] hover:text-white transition-colors"><Github size={18} /></a>
+             <a href="https://linkedin.com/in/ansh-adarsh2021" target="_blank" rel="noopener noreferrer" className="text-[#86868b] hover:text-white transition-colors"><Linkedin size={18} /></a>
+             <a href="mailto:anshk1126@gmail.com" className="text-[#86868b] hover:text-white transition-colors"><Mail size={18} /></a>
           </div>
 
           <div className="text-center pt-8 border-t border-white/5 w-full">
             <p className="text-[12px] text-[#424245] tracking-tight">
-              Copyright &copy; 2026 ASSolution. All rights reserved. Precise engineering for the modern web.
+              Copyright &copy; 2026 Ansh Adarsh. All rights reserved. High-performance software engineering.
             </p>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }
 
-
-export { StackedCircularFooter }
+export { StackedCircularFooter };

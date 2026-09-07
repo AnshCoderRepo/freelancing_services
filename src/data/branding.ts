@@ -14,58 +14,58 @@ export type Highlight = {
 };
 
 export const BRANDING = {
-  name: "ASSolution",
-  role: "Software Engineer",
-  email: "contact@assolution.com",
+  name: "Ansh Adarsh",
+  role: "Software Development Engineer",
+  email: "anshk1126@gmail.com",
   phone: "+91-7070410031",
-  tagline: "Building high-performance digital experiences with precision and speed.",
-  bio: "Full-stack engineer passionate about architecting scalable platforms and crafting exceptional user experiences. Currently leading Web Tech at EUROASIANN — building with Next.js and end-to-end development workflows.",
+  tagline: "Shipping production-grade, high-performance web applications and scalable backend systems.",
+  bio: "Entry-level Software Development Engineer with hands-on experience shipping production interfaces in React, TypeScript, and Next.js, backed by Node.js on the backend. SDE Intern at Euroasiann & former Data Science Intern at LV Prasad Eye Institute.",
 };
 
 export const HIGHLIGHTS: Highlight[] = [
   {
     icon: Briefcase,
-    title: "Current Role",
+    title: "Experience",
     description:
-      "Software Engineer at EUROASIANN — leading the Web Tech Team to build full-stack portfolio platforms with Next.js, ShadcnUI, and modular components.",
+      "SDE Intern at Euroasiann (PartFinder & EuroasiannIT platforms) · Former Data Science Intern at LV Prasad Eye Institute (Patient UI & AI scheduling).",
   },
   {
     icon: GraduationCap,
     title: "Education",
     description:
-      "B.Tech from Lloyd Institute of Engineering & Technology (GPA: 8.25 / 10.00) · Graduated May 2025 · Greater Noida, UP",
+      "B.Tech in Computer Science Engineering — LIET, Greater Noida (CGPA: 8.4 / 10) · 2021 – 2025.",
   },
   {
     icon: Code2,
-    title: "Tech Stack",
+    title: "Technical Skills",
     description:
-      "Java · JavaScript · Python · C++ · TypeScript · React · Next.js · Node.js · Express.js · MongoDB · PostgreSQL · Docker · Vue.js · REST APIs",
+      "React.js · Next.js · TypeScript · JavaScript (ES6+) · Node.js · Express.js · Java · Python · C++ · PostgreSQL · MongoDB · Docker · REST APIs",
   },
   {
     icon: Award,
     title: "Certifications",
     description:
-      "Full Stack Development — LIET  ·  Java Development — LIET",
+      "AI on Azure — Microsoft (2024)  ·  Java Programming — Coursera (2025)",
   },
 ];
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: "LinkedIn",
-    handle: "ASSolution",
-    href: "https://linkedin.com/in/ASSolution",
+    handle: "ansh-adarsh2021",
+    href: "https://linkedin.com/in/ansh-adarsh2021",
     icon: Linkedin,
   },
   {
     label: "GitHub",
-    handle: "ASSolution",
-    href: "https://github.com/ASSolution",
+    handle: "AnshCoderRepo",
+    href: "https://github.com/AnshCoderRepo",
     icon: Github,
   },
   {
     label: "Email",
-    handle: "contact@assolution.com",
-    href: "mailto:contact@assolution.com",
+    handle: "anshk1126@gmail.com",
+    href: "mailto:anshk1126@gmail.com",
     icon: Mail,
   },
   {
@@ -75,3 +75,4 @@ export const SOCIAL_LINKS: SocialLink[] = [
     icon: Phone,
   },
 ];
+

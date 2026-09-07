@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ASSolution | Premium Engineering Services",
-  description: "High-performance full-stack solutions and digital architecture by ASSolution.",
+  title: "Ansh Adarsh | Software Development Engineer",
+  description: "Portfolio of Ansh Adarsh — Software Development Engineer specializing in React, Next.js, TypeScript, Node.js, and high-performance digital platforms.",
 };
 
 import PageTransition from "@/components/providers/page-transition";

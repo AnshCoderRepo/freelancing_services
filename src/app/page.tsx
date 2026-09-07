@@ -77,7 +77,7 @@ export default function Home() {
 
         <footer className="w-full py-12 bg-black border-t border-white/10 text-center px-6">
           <p className="text-[12px] text-[#86868b] font-normal tracking-tight">
-            ASSolution &copy; 2026 • Optimized for speed and precision.
+            Ansh Adarsh &copy; 2026 • Optimized for speed and precision.
           </p>
         </footer>
       </main>
