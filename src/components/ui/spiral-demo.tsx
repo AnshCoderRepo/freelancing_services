@@ -80,24 +80,30 @@ const SpiralDemo = ({ skipEnter = false }: { skipEnter?: boolean }) => {
               </p>
             </header>
 
-            {/* Bio Section with Emojis (Xubh-style) */}
+            {/* Bio Section with Emojis */}
             <section className="space-y-8 text-xl md:text-2xl leading-[1.6] font-normal text-white/80">
               <p>
-                Working as a <span className="text-white font-medium border-b border-white/20 pb-1">Software Engineer</span> at 
-                <span className="text-apple-blue font-semibold mx-1 italic underline decoration-apple-blue/30 underline-offset-4">EUROASIANN</span> (🦘).
+                Software Development Engineer Intern at{" "}
+                <span className="text-apple-blue font-semibold mx-1 italic underline decoration-apple-blue/30 underline-offset-4">
+                  Euroasiann
+                </span>{" "}
+                (🚀), building high-performance production web platforms with Next.js and React.
               </p>
               
               <p>
-                Previously built high-performance platforms as a developer (📱) and architect (📕).
+                Previously worked as a Data Science Intern at{" "}
+                <span className="text-white font-medium italic underline decoration-white/30 underline-offset-4 mx-1">
+                  LV Prasad Eye Institute
+                </span>{" "}
+                (🏥), redesigning patient appointment workflows and building AI-driven scheduling recommendation engines.
               </p>
 
               <p>
-                Leading the Web Tech team to craft polished components as a partner at 
-                <span className="text-white font-medium italic underline decoration-white/30 underline-offset-4 mx-1">ASSolution</span> (🧪).
+                Graduate in <span className="text-white font-medium border-b border-white/20 pb-1">B.Tech Computer Science Engineering</span> from LIET Greater Noida (CGPA: 8.4/10) with certifications in AI on Azure and Java.
               </p>
 
               <p>
-                I love bringing complex ideas to life through code and taking on technical challenges with 🐈 and 🐕 vibes.
+                Passionate about clean architecture, scalable REST APIs, microservices with Docker, and crafting intuitive user interfaces.
               </p>
             </section>
 
@@ -143,7 +149,7 @@ const SpiralDemo = ({ skipEnter = false }: { skipEnter?: boolean }) => {
 
             {/* Footer */}
             <footer className="w-full pt-24 pb-12 opacity-20 text-xs tracking-[0.3em] uppercase">
-              &copy; 2026 {BRANDING.name} &middot; Inspired by Excellence
+              &copy; 2026 {BRANDING.name} &middot; Software Development Engineer
             </footer>
 
           </main>
@@ -152,12 +158,24 @@ const SpiralDemo = ({ skipEnter = false }: { skipEnter?: boolean }) => {
 
       {/* 4. Navigation Icons (Top Right) */}
       <nav className="fixed top-8 right-8 z-50 flex gap-6">
-        <button className="text-white/40 hover:text-white transition-colors" title="Projects">
+        <a 
+          href="https://github.com/AnshCoderRepo" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="text-white/40 hover:text-white transition-colors" 
+          title="GitHub"
+        >
           <Github size={22} />
-        </button>
-        <button className="text-white/40 hover:text-white transition-colors" title="LinkedIn">
+        </a>
+        <a 
+          href="https://linkedin.com/in/ansh-adarsh2021" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="text-white/40 hover:text-white transition-colors" 
+          title="LinkedIn"
+        >
           <Linkedin size={22} />
-        </button>
+        </a>
       </nav>
 
       {/* Decorative Gradients */}

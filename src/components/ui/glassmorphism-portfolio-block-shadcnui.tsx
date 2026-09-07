@@ -64,11 +64,11 @@ export function GlassmorphismPortfolioBlock() {
            </div>
 
            <div className="flex flex-wrap gap-6 items-center pt-4">
-              <Button className="apple-pill-button bg-apple-blue hover:bg-[#0077ed] text-white text-[17px] h-auto py-3 px-8 font-normal shadow-none">
+              <a href="mailto:anshk1126@gmail.com" className="inline-flex items-center justify-center apple-pill-button bg-apple-blue hover:bg-[#0077ed] text-white text-[17px] h-auto py-3 px-8 font-normal shadow-none transition-all">
                 Get in touch
-              </Button>
-              <a href="#" className="flex items-center gap-1 text-apple-blue hover:underline text-[17px] font-normal">
-                View curriculum vitae <ChevronRight size={18} />
+              </a>
+              <a href="https://github.com/AnshCoderRepo" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-apple-blue hover:underline text-[17px] font-normal">
+                View GitHub Repositories <ChevronRight size={18} />
               </a>
            </div>
         </div>
@@ -82,12 +82,12 @@ export function GlassmorphismPortfolioBlock() {
               <div className="absolute inset-0 flex flex-col items-center justify-center p-10 text-center space-y-8">
                  {/* Avatar */}
                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-violet-500 via-purple-600 to-indigo-700 flex items-center justify-center shadow-inner">
-                    <span className="text-4xl font-bold text-white tracking-widest">AS</span>
+                    <span className="text-4xl font-bold text-white tracking-widest">AA</span>
                  </div>
                  
                  <div className="space-y-2">
                     <h3 className="text-[24px] font-semibold text-[#1d1d1f]">{BRANDING.name}</h3>
-                    <p className="text-[14px] font-medium text-[#86868b] uppercase tracking-[0.2em]">Full-Stack Developer</p>
+                    <p className="text-[14px] font-medium text-[#86868b] uppercase tracking-[0.2em]">{BRANDING.role}</p>
                  </div>
 
                  {/* Social links as small icons */}

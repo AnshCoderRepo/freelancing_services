@@ -4,12 +4,16 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useMemo, useCallback, type MouseEvent, type ReactNode } from "react";
 
 const TECH_STACK = [
-  "React",
+  "React.js",
   "Next.js",
   "TypeScript",
   "Node.js",
-  "Three.js",
-  "Tailwind",
+  "Express.js",
+  "PostgreSQL",
+  "MongoDB",
+  "Docker",
+  "Java",
+  "Python",
 ];
 
 /* ─── Floating wireframe shapes ─── */
@@ -223,7 +227,7 @@ export function DavidHero() {
     [mouseX, mouseY]
   );
 
-  const titleLetters = "ASSolution".split("");
+  const titleLetters = "ANSH ADARSH".split("");
 
   return (
     <section
@@ -282,7 +286,7 @@ export function DavidHero() {
             transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="banner mb-6"
           >
-            <span className="banner-copy">WEB DEVELOPER</span>
+            <span className="banner-copy">SOFTWARE DEVELOPMENT ENGINEER</span>
           </motion.div>
 
           {/* Main Title — 3D Letter Reveal */}
@@ -318,8 +322,7 @@ export function DavidHero() {
             className="text-[var(--color-text-300)] text-lg md:text-xl max-w-md font-medium leading-relaxed mb-8"
             style={{ transform: "translateZ(20px)" }}
           >
-            Building high-performance digital experiences with precision and
-            speed.
+            Shipping production-grade web interfaces in React, Next.js, and TypeScript, backed by robust backend systems.
           </motion.p>
 
           {/* Tech Stack Pills */}
