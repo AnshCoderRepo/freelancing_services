@@ -1,0 +1,142 @@
+{
+    "type": "float-area",
+    "_widgets": [
+        [
+            {
+                "widget": {
+                    "constructionOptions": {
+                        "factoryId": "code-editor-opener",
+                        "options": {
+                            "kind": "navigatable",
+                            "uri": "src\\proxy.ts",
+                            "floatAreaId": "2299a24e-966a-4ea5-b06e-3ca4b3147f88"
+                        }
+                    },
+                    "innerWidgetState": {
+                        "cursorState": [
+                            {
+                                "inSelectionMode": false,
+                                "selectionStart": {
+                                    "lineNumber": 5,
+                                    "column": 6
+                                },
+                                "position": {
+                                    "lineNumber": 5,
+                                    "column": 6
+                                }
+                            }
+                        ],
+                        "viewState": {
+                            "scrollLeft": 0,
+                            "firstPosition": {
+                                "lineNumber": 1,
+                                "column": 1
+                            },
+                            "firstPositionDeltaTop": 0
+                        },
+                        "contributionsState": {
+                            "editor.contrib.folding": {
+                                "lineCount": 11,
+                                "provider": "syntax",
+                                "foldedImports": false
+                            },
+                            "editor.contrib.wordHighlighter": false
+                        }
+                    }
+                },
+                "width": 725.4700364041524,
+                "height": 450,
+                "spacing": 0
+            }
+        ],
+        [
+            {
+                "widget": {
+                    "constructionOptions": {
+                        "factoryId": "code-editor-opener",
+                        "options": {
+                            "kind": "navigatable",
+                            "uri": "src\\lib\\utils.ts",
+                            "floatAreaId": "2299a24e-966a-4ea5-b06e-3ca4b3147f88"
+                        }
+                    }
+                },
+                "width": 725.4700364041524,
+                "height": 450,
+                "spacing": 88.9875085948322
+            }
+        ]
+    ],
+    "_widths": [
+        725.4700364041524,
+        725.4700364041524
+    ],
+    "_modelData": {
+        "connections": [
+            {
+                "startWord": {
+                    "uri": "src\\proxy.ts",
+                    "word": "export",
+                    "lineNumber": 5,
+                    "startColumn": 1,
+                    "endLineNumber": 5,
+                    "endColumn": 7,
+                    "x": 95.59999879622555,
+                    "y": 137.200002114568,
+                    "width": 48,
+                    "height": 19,
+                    "hide": false
+                },
+                "endWord": {
+                    "uri": "src\\lib\\utils.ts",
+                    "lineNumber": 2,
+                    "startColumn": 35,
+                    "endLineNumber": 2,
+                    "endColumn": 40,
+                    "word": "merge",
+                    "x": 1149.062507256339,
+                    "y": 169.1875064599633,
+                    "hide": false,
+                    "height": 19,
+                    "width": 40
+                },
+                "id": "553129bb-f729-4dd6-b01b-a533d1a5779f",
+                "startAnchor": {
+                    "x": 143.59999879622555,
+                    "y": 147.43151953238976
+                },
+                "endAnchor": {
+                    "x": 1149.062507256339,
+                    "y": 178.0779086117785
+                },
+                "startControl": {
+                    "x": 175.5851447637769,
+                    "y": 147.43151953238976
+                },
+                "endControl": {
+                    "x": 1105.082931550956,
+                    "y": 178.0779086117785
+                },
+                "arrow": {
+                    "angle": 0,
+                    "x": 1137.062507256339,
+                    "y": 178.0779086117785
+                }
+            }
+        ],
+        "annotations": [
+            {
+                "uri": "src\\lib\\utils.ts",
+                "lineNumber": 5,
+                "column": 31,
+                "id": "bbb48eee-c0e9-49fe-b9e0-4b9df4cff6c7",
+                "relativeX": 137.0322330713623,
+                "relativeY": 164.18804663069992,
+                "content": "",
+                "width": 39,
+                "height": 13
+            }
+        ],
+        "highlights": []
+    }
+}

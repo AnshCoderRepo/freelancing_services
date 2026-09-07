@@ -26,7 +26,7 @@ import { BucketSection } from "@/components/bucket-section";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#f5f5f7] dark:bg-black overflow-x-hidden">
+    <div className="flex flex-col min-h-screen bg-black overflow-x-hidden">
       <main className="flex flex-1 flex-col items-center justify-start w-full p-0">
         
         {/* New David Hckh Inspired Hero Section */}
@@ -68,14 +68,14 @@ export default function Home() {
         <BucketSection />
 
 
-        {/* Newsletter - Light Tone */}
-        <section className="w-full bg-[#fafafc] py-24 flex flex-col items-center px-4 md:px-6">
+        {/* Newsletter */}
+        <section className="w-full bg-[#0a0a0a] py-24 flex flex-col items-center px-4 md:px-6">
            <div className="w-full max-w-[600px]">
              <OptimisticNewsletter />
            </div>
         </section>
 
-        <footer className="w-full py-12 bg-[#f5f5f7] border-t border-black/5 text-center px-6">
+        <footer className="w-full py-12 bg-black border-t border-white/10 text-center px-6">
           <p className="text-[12px] text-[#86868b] font-normal tracking-tight">
             ASSolution &copy; 2026 • Optimized for speed and precision.
           </p>
@@ -83,7 +83,7 @@ export default function Home() {
       </main>
 
       {/* Social / Testimonials Section */}
-      <section className="w-full bg-white border-t border-black/5">
+      <section className="w-full bg-black border-t border-white/10">
         <TestimonialsSection />
       </section>
 
