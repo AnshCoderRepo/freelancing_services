@@ -2,18 +2,62 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { Preloader } from "@/components/preloader";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
-const LoadingContext = createContext({ isLoaded: false });
+const LoadingContext = createContext({ isLoaded: true });
 
 export const useLoading = () => useContext(LoadingContext);
 
 export default function InitialLoadProvider({ children }: { children: React.ReactNode }) {
+  const [shouldAnimateInitial, setShouldAnimateInitial] = useState<boolean | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    try {
+      const hasVisited = sessionStorage.getItem("portfolio_has_visited") === "true";
+      if (hasVisited) {
+        setShouldAnimateInitial(false);
+        setIsLoaded(true);
+      } else {
+        setShouldAnimateInitial(true);
+      }
+    } catch {
+      // Fallback if sessionStorage is disabled/inaccessible
+      setShouldAnimateInitial(false);
+      setIsLoaded(true);
+    }
+  }, []);
+
+  const handleComplete = () => {
+    try {
+      sessionStorage.setItem("portfolio_has_visited", "true");
+    } catch {
+      // ignore
+    }
+    setIsLoaded(true);
+  };
+
+  // If already visited or still determining on mount, render children directly without preloader
+  if (shouldAnimateInitial === false) {
+    return (
+      <LoadingContext.Provider value={{ isLoaded: true }}>
+        <div className="w-full relative">{children}</div>
+      </LoadingContext.Provider>
+    );
+  }
+
+  // Initial SSR / hydration frame before checking session storage
+  if (shouldAnimateInitial === null) {
+    return (
+      <LoadingContext.Provider value={{ isLoaded: true }}>
+        <div className="w-full relative">{children}</div>
+      </LoadingContext.Provider>
+    );
+  }
 
   return (
     <LoadingContext.Provider value={{ isLoaded }}>
-      <Preloader onComplete={() => setIsLoaded(true)} />
+      <Preloader onComplete={handleComplete} />
       <motion.div
         initial={{ 
           opacity: 0, 

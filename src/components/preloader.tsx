@@ -28,7 +28,10 @@ export function Preloader({ onComplete }: { onComplete: () => void }) {
       });
     }, 50);
 
-    return () => clearInterval(timer);
+    return () => {
+      clearInterval(timer);
+      document.body.style.overflow = "";
+    };
   }, []);
 
   if (!isMounted) return null;
