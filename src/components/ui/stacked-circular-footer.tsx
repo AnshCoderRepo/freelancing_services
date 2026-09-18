@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 function StackedCircularFooter() {
@@ -12,9 +13,9 @@ function StackedCircularFooter() {
           </div>
           
           <nav className="mb-12 flex flex-wrap justify-center gap-x-10 gap-y-4">
-            <a href="/" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">Home</a>
-            <a href="/about" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">About & Experience</a>
-            <a href="#projects" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">Projects</a>
+            <Link href="/" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">Home</Link>
+            <Link href="/about" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">About & Experience</Link>
+            <Link href="/#projects" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">Projects</Link>
             <a href="mailto:anshk1126@gmail.com" className="text-[12px] text-[#86868b] hover:text-white transition-colors tracking-tight">Contact</a>
           </nav>
 

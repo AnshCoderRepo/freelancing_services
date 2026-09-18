@@ -1,4 +1,4 @@
-import { HardDrive, Cpu, Layers, Globe, Database, Bot } from "lucide-react";
+import { Globe, Database, Bot } from "lucide-react";
 
 export interface Project {
   id: string;

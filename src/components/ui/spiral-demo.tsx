@@ -3,7 +3,7 @@
 import { SpiralAnimation } from "@/components/ui/spiral-animation"
 import { useState, useEffect } from 'react'
 import { BRANDING, HIGHLIGHTS, SOCIAL_LINKS } from "@/data/branding"
-import { Github, Linkedin, Mail, Twitter, ChevronRight } from "lucide-react"
+import { Github, Linkedin, ChevronRight } from "lucide-react"
 
 const SpiralDemo = ({ skipEnter = false }: { skipEnter?: boolean }) => {
   const [isEntered, setIsEntered] = useState(skipEnter)

@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useMemo, useCallback, type MouseEvent, type ReactNode } from "react";
+import HeroTerminal from "@/components/hero-terminal";
 
 const TECH_STACK = [
   "React.js",
@@ -9,11 +10,13 @@ const TECH_STACK = [
   "TypeScript",
   "Node.js",
   "Express.js",
+  "Java",
+  "Python",
+  "C++",
   "PostgreSQL",
   "MongoDB",
   "Docker",
-  "Java",
-  "Python",
+  "REST APIs",
 ];
 
 /* ─── Floating wireframe shapes ─── */
@@ -275,161 +278,133 @@ export function DavidHero() {
 
       {/* ─── Main 3D Content Layer ─── */}
       <motion.div
-        className="hero-content grid grid-cols-1 md:grid-cols-2 w-full h-full"
+        className="hero-content w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 z-10"
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       >
-        <div className="hero-content-inner flex flex-col justify-center items-start px-8 md:px-[8vw] z-10">
-          {/* Slanted Badge */}
-          <motion.div
-            initial={{ opacity: 0, x: -60, skewX: -15 }}
-            animate={{ opacity: 1, x: 0, skewX: -15 }}
-            transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="banner mb-6"
-          >
-            <span className="banner-copy">SOFTWARE DEVELOPMENT ENGINEER</span>
-          </motion.div>
-
-          {/* Main Title — 3D Letter Reveal */}
-          <div className="overflow-hidden mb-6">
-            <motion.h1
-              className="hero-title"
-              style={{ transformStyle: "preserve-3d" }}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center w-full">
+          {/* Left Column: Hero Information */}
+          <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-center items-start z-10">
+            {/* Status & Role Pill */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-medium shadow-sm mb-5"
             >
-              {titleLetters.map((letter, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ y: "120%", rotateX: -80, opacity: 0 }}
-                  animate={{ y: 0, rotateX: 0, opacity: 1 }}
-                  transition={{
-                    duration: 0.9,
-                    delay: 0.6 + i * 0.05,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="inline-block hero-title-gradient"
-                  style={{ transformOrigin: "bottom center", display: letter === " " ? "inline" : "inline-block" }}
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span className="tracking-wide">SOFTWARE DEVELOPMENT ENGINEER</span>
+            </motion.div>
+
+            {/* Main Title */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-1 mb-4"
+            >
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white">
+                Ansh Adarsh
+              </h1>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">
+                Full-Stack Systems & Web
+              </div>
+            </motion.div>
+
+            {/* Subtext */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="text-slate-300 text-sm sm:text-base max-w-lg font-normal leading-relaxed mb-6"
+              style={{ transform: "translateZ(20px)" }}
+            >
+              Architecting production-grade digital platforms, resilient microservices, and interactive developer experiences with <strong className="text-white font-semibold">React 19</strong>, <strong className="text-white font-semibold">Next.js 16</strong>, <strong className="text-white font-semibold">TypeScript</strong>, and <strong className="text-white font-semibold">Node.js</strong>.
+            </motion.p>
+
+            {/* Metric Highlights Strip */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="grid grid-cols-3 gap-2.5 w-full max-w-md mb-6 font-mono text-center"
+              style={{ transform: "translateZ(15px)" }}
+            >
+              <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                <span className="text-xs sm:text-sm font-bold text-cyan-400 block">Euroasiann</span>
+                <span className="text-[10px] text-slate-400 block">SDE Intern</span>
+              </div>
+              <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                <span className="text-xs sm:text-sm font-bold text-emerald-400 block">100/100</span>
+                <span className="text-[10px] text-slate-400 block">Lighthouse</span>
+              </div>
+              <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                <span className="text-xs sm:text-sm font-bold text-purple-400 block">500+</span>
+                <span className="text-[10px] text-slate-400 block">LeetCode</span>
+              </div>
+            </motion.div>
+
+            {/* Tech Stack Pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-wrap gap-1.5 sm:gap-2 mb-8"
+              style={{ transform: "translateZ(15px)" }}
+            >
+              {TECH_STACK.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-2.5 py-1 text-[11px] font-mono tracking-wide uppercase font-medium rounded-lg border border-white/10 bg-white/5 text-slate-300 backdrop-blur-sm hover:bg-white/10 hover:text-white hover:border-cyan-500/40 transition-all duration-200 cursor-default"
                 >
-                  {letter === " " ? "\u00A0" : letter}
-                </motion.span>
+                  {tech}
+                </span>
               ))}
-            </motion.h1>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="flex items-center gap-3 sm:gap-4"
+              style={{ transform: "translateZ(25px)" }}
+            >
+              <a
+                href="#projects"
+                className="group relative px-6 py-2.5 sm:px-7 sm:py-3 text-xs font-mono font-semibold tracking-wider uppercase rounded-full bg-white text-black overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg"
+              >
+                <span className="relative z-10">Explore Work</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                  Explore Work
+                </span>
+              </a>
+              <a
+                href="#contact"
+                className="px-6 py-2.5 sm:px-7 sm:py-3 text-xs font-mono font-semibold tracking-wider uppercase rounded-full border border-white/20 text-slate-300 hover:bg-white/5 hover:text-white hover:border-cyan-500/40 transition-all duration-300"
+              >
+                Let&apos;s Talk
+              </a>
+            </motion.div>
           </div>
 
-          {/* Subtext */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[var(--color-text-300)] text-lg md:text-xl max-w-md font-medium leading-relaxed mb-8"
-            style={{ transform: "translateZ(20px)" }}
-          >
-            Shipping production-grade web interfaces in React, Next.js, and TypeScript, backed by robust backend systems.
-          </motion.p>
-
-          {/* Tech Stack Pills */}
+          {/* Right Column: Interactive Hero Terminal */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-wrap gap-2 mb-10"
-            style={{ transform: "translateZ(15px)" }}
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 xl:col-span-7 w-full z-20"
+            style={{ transform: "translateZ(30px)" }}
           >
-            {TECH_STACK.map((tech, i) => (
-              <motion.span
-                key={tech}
-                initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
-                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                transition={{ duration: 0.5, delay: 1.7 + i * 0.07, ease: "easeOut" }}
-                className="px-3 py-1 text-[11px] tracking-wide uppercase font-semibold rounded-full border border-white/10 bg-white/5 text-white/60 backdrop-blur-sm hover:bg-white/10 hover:text-white/90 hover:border-white/20 transition-all duration-300 cursor-default"
-              >
-                {tech}
-              </motion.span>
-            ))}
+            <HeroTerminal
+              developerName="Ansh Adarsh"
+              roleTitle="Software Development Engineer"
+              defaultOpenToWork={true}
+            />
           </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.9, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center gap-4"
-            style={{ transform: "translateZ(25px)" }}
-          >
-            <a
-              href="#projects"
-              className="group relative px-7 py-3 text-[13px] font-semibold tracking-wide uppercase rounded-full bg-white text-black overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95"
-            >
-              <span className="relative z-10">Explore Work</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                Explore Work
-              </span>
-            </a>
-            <a
-              href="#contact"
-              className="px-7 py-3 text-[13px] font-semibold tracking-wide uppercase rounded-full border border-white/20 text-white/70 hover:bg-white/5 hover:text-white hover:border-white/40 transition-all duration-300"
-            >
-              Let&apos;s Talk
-            </a>
-          </motion.div>
-        </div>
-
-        {/* Right side — decorative orbiting system */}
-        <div className="hidden md:flex items-center justify-center pointer-events-none relative">
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute w-[280px] h-[280px] rounded-full border border-white/[0.04]"
-          />
-          <motion.div
-            animate={{ rotate: -360 }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute w={[420]} h-[420px] rounded-full border border-white/[0.03]"
-          />
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 55, repeat: Infinity, ease: "linear" }}
-            className="absolute w-[560px] h-[560px] rounded-full border border-dashed border-white/[0.02]"
-          />
-          {/* Orbit dots */}
-          {[0, 1, 2].map((i) => (
-            <motion.div
-              key={i}
-              animate={{ rotate: 360 }}
-              transition={{
-                duration: 25 + i * 15,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="absolute"
-              style={{ width: 280 + i * 140, height: 280 + i * 140 }}
-            >
-              <div
-                className="absolute rounded-full"
-                style={{
-                  width: 4 - i,
-                  height: 4 - i,
-                  top: 0,
-                  left: "50%",
-                  background: i === 0 ? "rgba(96,165,250,0.4)" : "rgba(255,255,255,0.15)",
-                  boxShadow: i === 0 ? "0 0 8px rgba(96,165,250,0.3)" : "none",
-                }}
-              />
-            </motion.div>
-          ))}
-          {/* Central pulsing core */}
-          <motion.div
-            animate={{
-              scale: [1, 1.4, 1],
-              opacity: [0.3, 0.6, 0.3],
-              boxShadow: [
-                "0 0 20px rgba(96,165,250,0.2)",
-                "0 0 40px rgba(96,165,250,0.4)",
-                "0 0 20px rgba(96,165,250,0.2)",
-              ],
-            }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="w-2 h-2 rounded-full bg-blue-400"
-          />
         </div>
       </motion.div>
 
@@ -437,33 +412,17 @@ export function DavidHero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-white/30"
+        transition={{ delay: 2.0, duration: 1 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30"
       >
-        <span className="text-[10px] tracking-[0.3em] uppercase font-bold text-center">
-          Scroll
+        <span className="text-[9px] tracking-[0.3em] uppercase font-mono font-bold text-center">
+          Scroll Down
         </span>
         <motion.div
           animate={{ scaleY: [1, 0.4, 1] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[1px] h-10 bg-gradient-to-b from-white/50 to-transparent origin-top"
+          className="w-[1px] h-8 bg-gradient-to-b from-cyan-400/60 to-transparent origin-top"
         />
-      </motion.div>
-
-      {/* Availability Badge */}
-      <motion.div
-        initial={{ opacity: 0, x: 30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 2.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-20 right-8 md:right-[8vw] hidden md:flex items-center gap-2 z-10"
-      >
-        <span className="relative flex h-2.5 w-2.5">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-          <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
-        </span>
-        <span className="text-[11px] text-white/40 tracking-wider uppercase font-medium">
-          Available for work
-        </span>
       </motion.div>
     </section>
   );

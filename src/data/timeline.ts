@@ -1,4 +1,4 @@
-import { Calendar, Code, FileText, User, Clock, Award, Briefcase, GraduationCap } from "lucide-react";
+import { Code, Clock, Award, Briefcase, GraduationCap } from "lucide-react";
 
 export const TIMELINE_DATA = [
   {

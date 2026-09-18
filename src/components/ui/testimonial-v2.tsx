@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Sun, Moon } from "lucide-react";
 
 // --- Types ---
 interface Testimonial {
@@ -118,7 +118,7 @@ const TestimonialsColumn = (props: {
                     {text}
                   </p>
                   <footer className="flex items-center gap-3 mt-6">
-                    <img
+                    <Image
                       width={40}
                       height={40}
                       src={image}
@@ -195,26 +195,4 @@ export function TestimonialsSection() {
   );
 }
 
-// --- Default export: full standalone page (matches original demo) ---
-export default function App() {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-  }, [isDark]);
-
-  return (
-    <div className="w-screen min-h-screen bg-white dark:bg-neutral-950 transition-colors duration-300 flex flex-col justify-center relative selection:bg-primary selection:text-white">
-      {/* Dark Mode Toggle */}
-      <button
-        onClick={() => setIsDark(!isDark)}
-        className="fixed top-6 right-6 z-50 p-3 rounded-full bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-100 border border-neutral-200 dark:border-neutral-800 shadow-xl hover:scale-110 transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary/50"
-        aria-label="Toggle Dark Mode"
-      >
-        {isDark ? <Sun size={20} /> : <Moon size={20} />}
-      </button>
-
-      <TestimonialsSection />
-    </div>
-  );
-}
+export default TestimonialsSection;
