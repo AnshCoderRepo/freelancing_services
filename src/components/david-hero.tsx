@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useMemo, useCallback, type MouseEvent, type ReactNode } from "react";
+import Image from "next/image";
 import HeroTerminal from "@/components/hero-terminal";
 
 const TECH_STACK = [
@@ -284,18 +285,31 @@ export function DavidHero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center w-full">
           {/* Left Column: Hero Information */}
           <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-center items-start z-10">
-            {/* Status & Role Pill */}
+            {/* Status & Profile Pill */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-medium shadow-sm mb-5"
+              className="flex items-center gap-3.5 mb-5"
             >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span className="tracking-wide">SOFTWARE DEVELOPMENT ENGINEER</span>
+              <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.3)] shrink-0">
+                <Image
+                  src="/ansh-adarsh.jpg"
+                  alt="Ansh Adarsh"
+                  fill
+                  sizes="48px"
+                  className="object-cover object-top"
+                  priority
+                />
+                <span className="absolute bottom-0.5 right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-black" />
+              </div>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-medium shadow-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
+                <span className="tracking-wide">SOFTWARE DEVELOPMENT ENGINEER</span>
+              </div>
             </motion.div>
 
             {/* Main Title */}
