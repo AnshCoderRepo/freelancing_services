@@ -1,22 +1,42 @@
-"use client";
-
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { DavidHero } from "@/components/david-hero";
 import { AboutSection } from "@/components/about-section";
-import { SkillsSection } from "@/components/skills-section";
-import { ExperienceSection } from "@/components/experience-section";
-import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
-import { TIMELINE_DATA } from "@/data/timeline";
 import { FOCUS_RAIL_ITEMS } from "@/data/portfolio";
-import { TestimonialsSection } from "@/components/ui/testimonial-v2";
 import { SimpleContactFooter } from "@/components/simple-contact-footer";
+
+const SkillsSection = dynamic(
+  () => import("@/components/skills-section").then((mod) => mod.SkillsSection),
+  {
+    loading: () => <div className="h-[400px] w-full bg-white/5 animate-pulse" />,
+  }
+);
+
+const ExperienceSection = dynamic(
+  () => import("@/components/experience-section").then((mod) => mod.ExperienceSection),
+  {
+    loading: () => <div className="h-[500px] w-full bg-white/5 animate-pulse" />,
+  }
+);
+
+const RadialOrbitalTimeline = dynamic(
+  () => import("@/components/ui/radial-orbital-timeline"),
+  {
+    loading: () => <div className="h-[600px] w-full bg-white/5 animate-pulse" />,
+  }
+);
 
 const FocusRail = dynamic(
   () => import("@/components/ui/focus-rail").then((mod) => mod.FocusRail),
   {
-    ssr: false,
     loading: () => <div className="h-[600px] w-full bg-black/10 animate-pulse" />,
+  }
+);
+
+const TestimonialsSection = dynamic(
+  () => import("@/components/ui/testimonial-v2").then((mod) => mod.TestimonialsSection),
+  {
+    loading: () => <div className="h-[400px] w-full bg-white/5 animate-pulse" />,
   }
 );
 
@@ -41,7 +61,7 @@ export default function Home() {
 
         {/* 5. Interactive Orbital Timeline (Experience & Milestones) */}
         <section id="timeline" className="w-full">
-          <RadialOrbitalTimeline timelineData={TIMELINE_DATA} />
+          <RadialOrbitalTimeline />
         </section>
 
         {/* 4. Production Projects Showcase (Single Projects Section) */}

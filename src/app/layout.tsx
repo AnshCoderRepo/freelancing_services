@@ -1,10 +1,8 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { Suspense } from "react";
-import { ClientOnly } from "@/components/client-only";
 import GlassNavbar from "@/components/glass-navbar";
 import PageTransition from "@/components/providers/page-transition";
 import InitialLoadProvider from "@/components/providers/initial-load-provider";
@@ -108,22 +106,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ClerkProvider>
-          <Suspense>
-            <InitialLoadProvider>
-              <SmoothScroll>
-                <div className="fixed top-0 left-0 right-0 z-[100]">
-                  <ClientOnly>
-                    <GlassNavbar />
-                  </ClientOnly>
-                </div>
-                <PageTransition>
-                  {children}
-                </PageTransition>
-              </SmoothScroll>
-            </InitialLoadProvider>
-          </Suspense>
-        </ClerkProvider>
+        <Suspense>
+          <InitialLoadProvider>
+            <SmoothScroll>
+              <div className="fixed top-0 left-0 right-0 z-[100]">
+                <GlassNavbar />
+              </div>
+              <PageTransition>
+                {children}
+              </PageTransition>
+            </SmoothScroll>
+          </InitialLoadProvider>
+        </Suspense>
       </body>
     </html>
   );

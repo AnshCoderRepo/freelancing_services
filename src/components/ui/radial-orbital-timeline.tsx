@@ -4,6 +4,7 @@ import { ArrowRight, Link, Zap } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { TIMELINE_DATA } from "@/data/timeline";
 
 interface TimelineItem {
   id: number;
@@ -18,11 +19,11 @@ interface TimelineItem {
 }
 
 interface RadialOrbitalTimelineProps {
-  timelineData: TimelineItem[];
+  timelineData?: TimelineItem[];
 }
 
 export default function RadialOrbitalTimeline({
-  timelineData,
+  timelineData = TIMELINE_DATA,
 }: RadialOrbitalTimelineProps) {
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>(
     {}
