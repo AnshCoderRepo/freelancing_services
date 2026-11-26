@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useMemo, useCallback, type MouseEvent, type ReactNode } from "react";
+import Image from "next/image";
 import HeroTerminal from "@/components/hero-terminal";
 
 const TECH_STACK = [
@@ -248,24 +249,18 @@ export function DavidHero() {
       <FloatingShapes mouseX={mouseX} mouseY={mouseY} />
 
       {/* Primary Glow */}
-      <motion.div
-        animate={{ scale: [1, 1.15, 1], opacity: [0.1, 0.18, 0.1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-[-15%] right-[-10%] w-[55vw] h-[55vw] bg-[#2563eb] rounded-full blur-[150px] pointer-events-none"
+      <div
+        className="absolute bottom-[-15%] right-[-10%] w-[55vw] h-[55vw] bg-[#2563eb] rounded-full blur-[150px] pointer-events-none opacity-15"
       />
 
       {/* Secondary Glow */}
-      <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-        className="absolute top-[-20%] left-[-15%] w-[45vw] h-[45vw] bg-[#7c3aed] rounded-full blur-[160px] pointer-events-none"
+      <div
+        className="absolute top-[-20%] left-[-15%] w-[45vw] h-[45vw] bg-[#7c3aed] rounded-full blur-[160px] pointer-events-none opacity-10"
       />
 
       {/* Accent Glow */}
-      <motion.div
-        animate={{ scale: [1, 1.1, 1], opacity: [0.04, 0.07, 0.04] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-        className="absolute top-[25%] right-[10%] w-[30vw] h-[30vw] bg-[#06b6d4] rounded-full blur-[130px] pointer-events-none"
+      <div
+        className="absolute top-[25%] right-[10%] w-[30vw] h-[30vw] bg-[#06b6d4] rounded-full blur-[130px] pointer-events-none opacity-[0.06]"
       />
 
       {/* Noise Texture */}
@@ -284,51 +279,48 @@ export function DavidHero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center w-full">
           {/* Left Column: Hero Information */}
           <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-center items-start z-10">
-            {/* Status & Role Pill */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-medium shadow-sm mb-5"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span className="tracking-wide">SOFTWARE DEVELOPMENT ENGINEER</span>
-            </motion.div>
+            {/* Status & Profile Pill */}
+            <div className="flex items-center gap-3.5 mb-5">
+              <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.3)] shrink-0">
+                <Image
+                  src="/ansh-adarsh.jpg"
+                  alt="Ansh Adarsh"
+                  fill
+                  sizes="48px"
+                  className="object-cover object-top"
+                  priority
+                />
+                <span className="absolute bottom-0.5 right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-black" />
+              </div>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-medium shadow-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
+                <span className="tracking-wide">SOFTWARE DEVELOPMENT ENGINEER</span>
+              </div>
+            </div>
 
-            {/* Main Title */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-1 mb-4"
-            >
+            {/* Main Title - Primary LCP Element (Renders Immediately in HTML) */}
+            <div className="space-y-1 mb-4">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-white">
                 Ansh Adarsh
               </h1>
               <div className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">
                 Full-Stack Systems & Web
               </div>
-            </motion.div>
+            </div>
 
             {/* Subtext */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            <p
               className="text-slate-300 text-sm sm:text-base max-w-lg font-normal leading-relaxed mb-6"
               style={{ transform: "translateZ(20px)" }}
             >
               Architecting production-grade digital platforms, resilient microservices, and interactive developer experiences with <strong className="text-white font-semibold">React 19</strong>, <strong className="text-white font-semibold">Next.js 16</strong>, <strong className="text-white font-semibold">TypeScript</strong>, and <strong className="text-white font-semibold">Node.js</strong>.
-            </motion.p>
+            </p>
 
             {/* Metric Highlights Strip */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            <div
               className="grid grid-cols-3 gap-2.5 w-full max-w-md mb-6 font-mono text-center"
               style={{ transform: "translateZ(15px)" }}
             >
@@ -344,13 +336,10 @@ export function DavidHero() {
                 <span className="text-xs sm:text-sm font-bold text-purple-400 block">500+</span>
                 <span className="text-[10px] text-slate-400 block">LeetCode</span>
               </div>
-            </motion.div>
+            </div>
 
             {/* Tech Stack Pills */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            <div
               className="flex flex-wrap gap-1.5 sm:gap-2 mb-8"
               style={{ transform: "translateZ(15px)" }}
             >
@@ -362,13 +351,10 @@ export function DavidHero() {
                   {tech}
                 </span>
               ))}
-            </motion.div>
+            </div>
 
             {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            <div
               className="flex items-center gap-3 sm:gap-4"
               style={{ transform: "translateZ(25px)" }}
             >
@@ -388,14 +374,11 @@ export function DavidHero() {
               >
                 Let&apos;s Talk
               </a>
-            </motion.div>
+            </div>
           </div>
 
           {/* Right Column: Interactive Hero Terminal */}
-          <motion.div
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          <div
             className="lg:col-span-6 xl:col-span-7 w-full z-20"
             style={{ transform: "translateZ(30px)" }}
           >
@@ -404,7 +387,7 @@ export function DavidHero() {
               roleTitle="Software Development Engineer"
               defaultOpenToWork={true}
             />
-          </motion.div>
+          </div>
         </div>
       </motion.div>
 

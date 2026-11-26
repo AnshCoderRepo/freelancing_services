@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Briefcase,
@@ -76,22 +77,43 @@ export function AboutSection() {
 
         {/* 2-Column Main Profile Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          {/* Left Column: Bio & Track Record */}
+          {/* Left Column: Bio & Track Record with Portrait */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#0B0F17]/80 backdrop-blur-xl border border-white/10 space-y-6 shadow-2xl">
-              <div className="space-y-3">
-                <h3 className="text-2xl font-bold text-white flex items-center gap-2">
-                  <span>{BRANDING.name}</span>
-                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 font-mono font-semibold">
-                    Available for SDE Roles
-                  </span>
-                </h3>
-                <p className="text-xs sm:text-sm text-cyan-400 font-mono">
-                  {BRANDING.role} • LIET Greater Noida (CGPA: 8.4)
-                </p>
+            <div className="p-6 sm:p-8 rounded-2xl bg-[#0B0F17]/80 backdrop-blur-xl border border-white/10 space-y-6 shadow-2xl relative overflow-hidden group">
+              {/* Profile Card Header with Photo */}
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
+                <div className="relative w-28 h-36 sm:w-32 sm:h-40 rounded-2xl overflow-hidden border-2 border-cyan-500/40 shadow-[0_0_25px_rgba(6,182,212,0.25)] shrink-0 group-hover:border-cyan-400 transition-colors">
+                  <Image
+                    src="/ansh-adarsh.jpg"
+                    alt="Ansh Adarsh - Software Development Engineer"
+                    fill
+                    sizes="(max-width: 640px) 112px, 128px"
+                    className="object-cover object-top hover:scale-105 transition-transform duration-500"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                </div>
+
+                <div className="space-y-2 text-center sm:text-left flex-1">
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 font-mono font-semibold flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      Available for SDE Roles
+                    </span>
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                    {BRANDING.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-cyan-400 font-mono font-medium">
+                    {BRANDING.role}
+                  </p>
+                  <p className="text-xs text-slate-400 font-mono">
+                    LIET Greater Noida • B.Tech CSE (8.4 CGPA)
+                  </p>
+                </div>
               </div>
 
-              <div className="space-y-4 text-slate-300 text-xs sm:text-sm leading-relaxed">
+              <div className="space-y-3 text-slate-300 text-xs sm:text-sm leading-relaxed border-t border-white/5 pt-4">
                 <p>
                   As an SDE Intern at <strong className="text-white">Euroasiann</strong>, I engineered production marketing and corporate web platforms with Next.js, cutting initial page load times by 2 seconds and lowering First Contentful Paint by 35%.
                 </p>
@@ -99,7 +121,7 @@ export function AboutSection() {
                   Prior to Euroasiann, I served as a Data Science Intern at the <strong className="text-white">LV Prasad Eye Institute</strong>, where I redesigned the patient appointment portal and implemented recommendation algorithms that streamlined scheduling pathways.
                 </p>
                 <p>
-                  I hold a B.Tech in Computer Science Engineering (2021–2025) with certified credentials in <strong className="text-cyan-300">Microsoft AI on Azure</strong> and <strong className="text-indigo-300">Coursera Java Programming</strong>.
+                  I hold certified credentials in <strong className="text-cyan-300">Microsoft AI on Azure</strong> and <strong className="text-indigo-300">Coursera Java Programming</strong>.
                 </p>
               </div>
 

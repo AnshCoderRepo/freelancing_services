@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     root: path.resolve(__dirname),
   },
   images: {
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -15,6 +16,13 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'ui.aceternity.com',
       },
+    ],
+  },
+  experimental: {
+    optimizePackageImports: [
+      'lucide-react',
+      'react-icons',
+      'framer-motion',
     ],
   },
 };
