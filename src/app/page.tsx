@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { DavidHero } from "@/components/david-hero";
-import { AboutSection } from "@/components/about-section";
 import { FOCUS_RAIL_ITEMS } from "@/data/portfolio";
 import { SimpleContactFooter } from "@/components/simple-contact-footer";
 
@@ -50,10 +49,7 @@ export default function Home() {
           <DavidHero />
         </section>
 
-        {/* 2. Comprehensive About & Engineering Philosophy */}
-        <AboutSection />
-
-        {/* 3. Interactive Skills Circuit Ecosystem */}
+        {/* 2. Interactive Skills Circuit Ecosystem */}
         <SkillsSection />
 
         {/* 4. Dedicated Work Experience Breakdown */}
