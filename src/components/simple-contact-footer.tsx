@@ -150,7 +150,7 @@ export function SimpleContactFooter() {
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-400 font-mono">
           <div className="flex items-center gap-6">
             <a href="#hero" className="hover:text-cyan-400 transition-colors">Home</a>
-            <a href="#about" className="hover:text-cyan-400 transition-colors">About</a>
+            <a href="/about" className="hover:text-cyan-400 transition-colors">About</a>
             <a href="#projects" className="hover:text-cyan-400 transition-colors">Projects</a>
             <a href="#experience" className="hover:text-cyan-400 transition-colors">Experience</a>
           </div>
